@@ -19,7 +19,6 @@ async function getImplementationAddress(
 ): Promise<string | null> {
   try {
     const raw = await provider.getStorage(proxyAddress, EIP1967_IMPLEMENTATION_SLOT);
-    console.log(raw);
     if (!raw || raw === "0x") return null;
     return ethers.getAddress("0x" + raw.slice(-40)); // 마지막 20바이트
   } catch (e) {
@@ -63,7 +62,7 @@ export async function getAbiWithProxySupport(
   // 3. Proxy 확인
   const implAddress = await getImplementationAddress(addrLower, provider);
   if (implAddress) {
-    console.log(`Proxy detected → Implementation: ${implAddress}`);
+    console.log(`🔁 Proxy detected → Implementation: ${implAddress}`);
 
     const implAbi = await fetchAbiFromEtherscan(implAddress);
     if (implAbi) {

@@ -6,7 +6,7 @@ config();
 const EIP1967_SLOT =
   "0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc";
 
-type ContractClassification = {
+export type ContractClassification = {
   address: string;
   type: "EOA" | "CA";
   isProxy: boolean;
@@ -29,30 +29,32 @@ export async function classifyAddress(
   }
 
   // 2. Check EIP-1967 Proxy Slot
-  try {
-    const raw = await provider.getStorage(address, EIP1967_SLOT);
-    if (raw && raw !== "0x") {
-      const impl = ethers.getAddress("0x" + raw.slice(-40));
-      return {
-        address,
-        type: "CA",
-        isProxy: true,
-        implementation: impl,
-      };
-    }
-  } catch {}
+//   try {
+//     const raw = await provider.getStorage(address, EIP1967_SLOT);
+//     console.log(`raw: ${raw}`);
+//     const implCandidate = "0x" + raw.slice(-40);
+  
+//     if (raw && raw !== "0x" && ethers.isAddress(implCandidate)) {
+//       return {
+//         address,
+//         type: "CA",
+//         isProxy: true,
+//         implementation: ethers.getAddress(implCandidate),
+//       };
+//     }
+//   } catch {}
 
   // 3. Fallback: Etherscan getsourcecode
   try {
     const res = await axios.get(`https://api.etherscan.io/api?module=contract&action=getsourcecode&address=${address}&apikey=${process.env.ETHERSCAN_API_KEY}`);
     const result = res.data?.result?.[0];
 
-    if (result?.Proxy === "1" && ethers.utils.isAddress(result?.Implementation)) {
+    if (result?.Proxy === "1" && result?.Implementation && ethers.isAddress(result?.Implementation)) {
       return {
         address,
         type: "CA",
         isProxy: true,
-        implementation: ethers.getAddress(result.Implementation),
+        implementation: ethers.getAddress(result?.Implementation),
       };
     }
   } catch {}

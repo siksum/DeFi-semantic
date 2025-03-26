@@ -20,7 +20,7 @@ export async function getAbi(address: string): Promise<any | null> {
     const res = await axios.get(url);
 
     if (res.data.status !== "1") {
-      console.warn(`❌ ABI not found for ${address}`);
+      console.warn(`ABI not found for ${address}`);
       return null;
     }
 
@@ -28,7 +28,7 @@ export async function getAbi(address: string): Promise<any | null> {
     fs.writeFileSync(abiPath, JSON.stringify(abi, null, 2));
     return abi;
   } catch (err) {
-    console.error(`⚠️ Failed to fetch ABI for ${address}:`, err.message);
+    console.error(`⚠️ Failed to fetch ABI for ${address}:`, err instanceof Error ? err.message : String(err));
     return null;
   }
 }

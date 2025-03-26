@@ -2,6 +2,8 @@ import { ethers } from "ethers";
 import * as fs from "fs";
 import * as path from "path";
 import { config } from "dotenv";
+import { getAbi } from "./utils/getAbi";
+import { getAbiWithProxySupport } from "./utils/getAbiWithProxySupport";
 config();
 
 const provider = new ethers.AlchemyProvider("mainnet", process.env.ALCHEMY_API_KEY);
@@ -44,6 +46,44 @@ async function extractAddressesFromLogs(logs: any[], provider: ethers.Provider) 
     return results;
   }
 
+async function decodeLogs(logs: ethers.Log[]) {
+    for (const log of logs) {
+      const abi = await getAbiWithProxySupport(log.address, provider);
+      if (!abi) {
+        console.warn(`ABI not found for ${log.address}`);
+        continue;
+      }
+  
+      const iface = new ethers.Interface(abi);
+  
+      try {
+        const decoded = iface.parseLog(log);
+        if (!decoded) {
+          console.warn(`Could not decode log ${log.index} from ${log.address}`);
+          continue;
+        }
+        console.log(`\n Event Index: ${log.index}`);
+        console.log(`[${decoded.name}] from ${log.address}`);
+        for (const [i, input] of decoded.fragment.inputs.entries()) {
+          const name = input.name || `arg${i}`;
+          const value = decoded.args[i];
+          const type = input.type;
+  
+          let displayValue = value;
+          if (type === "address") {
+            displayValue = ethers.getAddress(value);
+          } else if (type.startsWith("uint") && value.toString) {
+            displayValue = value.toString();
+          }
+  
+          console.log(`  - ${name} (${type}): ${displayValue}`);
+        }
+      } catch (err) {
+        console.warn(`Could not decode log ${log.index} from ${log.address}`);
+      }
+    }
+}
+
 async function main() {
     if (!fs.existsSync(logFilePath)) {
       console.error("Log file not found");
@@ -57,6 +97,8 @@ async function main() {
     for (const { address, type } of addresses) {
       console.log(`- ${address} → ${type}`);
     }
+
+    await decodeLogs(rawLogs);
   }
-  
+
   main().catch(console.error);

@@ -1,31 +1,25 @@
 import { ethers } from "ethers";
 import { config } from "dotenv";
-import axios from "axios"; // 웹에 HTTP 요청 보내는 라이브러리
+import axios from "axios";
+import fs from "fs";
 
-config(); // .env 파일에서 ALCHEMY_API_KEY, ETHERSCAN_API_KEY 로드
+config();
 
-// provider : 이더리움 네트워크에 연결하는 객체
-const provider = new ethers.AlchemyProvider(
-    "mainnet",
-    process.env.ALCHEMY_API_KEY
-);
+const provider = new ethers.AlchemyProvider("mainnet", process.env.ALCHEMY_API_KEY);
+const txHash = "0xb5c8bd9430b6cc87a0e2fe110ece6bf527fa4f170a4bc8cd032f768fc5219838";
 
-// 추출하고자 하는 트랜잭션 해시
-const txHash = "0xb5c8bd9430b6cc87a0e2fe110ece6bf527fa4f170a4bc8cd032f768fc5219838"; // bzx 공격 트랜잭션
+const failedLogs: { address: string; topic: string; reason: string }[] = [];
 
-// receipt : 트랜잭션 실행 결과 (event logs 포함)
 async function getTxReceipt(txHash: string) {
     const receipt = await provider.getTransactionReceipt(txHash);
     return receipt;
 }
 
-// 주소가 EOA인지 CA인지 확인
 async function isContract(address: string): Promise<boolean> {
     const code = await provider.getCode(address);
     return code !== "0x";
 }
 
-// 주소의 ABI 가져오기
 async function getAbiFromEtherscan(address: string) {
     const url = `https://api.etherscan.io/api?module=contract&action=getabi&address=${address}&apikey=${process.env.ETHERSCAN_API_KEY}`;
     const response = await axios.get(url);
@@ -35,7 +29,6 @@ async function getAbiFromEtherscan(address: string) {
     return JSON.parse(response.data.result);
 }
 
-// 토큰의 소수점 자리수 가져오기
 async function getTokenDecimals(address: string): Promise<number> {
     try {
         const tokenContract = new ethers.Contract(
@@ -47,11 +40,10 @@ async function getTokenDecimals(address: string): Promise<number> {
         return decimals;
     } catch (error) {
         console.warn("Failed to get token decimals:", (error as Error).message);
-        return 18; // 디코딩 실패시 기본값 18 반환(ETH)
+        return 18;
     }
 }
 
-// ENS 이름 해석
 async function resolveENS(address: string): Promise<string> {
     try {
         const name = await provider.lookupAddress(address);
@@ -61,44 +53,59 @@ async function resolveENS(address: string): Promise<string> {
     }
 }
 
-// event logs 디코딩 및 출력
+function getEventSignatureName(topic0: string): string {
+    const knownEvents: Record<string, string> = {
+        "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef": "Transfer",
+        "0xd78ad95fa46c994b6551d0da85fc275fe613f1d2c12e5df1f3d6f03d34647ec5": "Swap",
+        "0x8c5be1e5ebec7d5bd14f714f4f8b6f01a34dd6e54f3efccb9f2b7dd0b8b8c6c0": "Approval"
+    };
+    return knownEvents[topic0.toLowerCase()] ?? "UnknownEvent";
+}
+
 async function decodeEventLogs(log: ethers.Log, abi: any[]) {
     try {
         const iface = new ethers.Interface(abi);
         const parsed = iface.parseLog(log);
         if (!parsed) {
-            console.log("Failed to decode event log");
+            console.warn("Failed to decode event log");
             return;
         }
-
+        console.log(parsed);    
         const paramOutputs: string[] = [];
 
         for (const [key, value] of Object.entries(parsed.args)) {
-            if (isNaN(Number(key))) {
-                let displayValue: string;
-
-                if (typeof value === 'bigint') {
-                    const decimals = await getTokenDecimals(log.address);
-                    displayValue = ethers.formatUnits(value, decimals);
-                } else if (ethers.isAddress(value.toString())) {
-                    const ensName = await resolveENS(value.toString());
-                    displayValue = ensName;
-                } else {
-                    displayValue = value.toString();
-                }
-
-                paramOutputs.push(`${key}: ${displayValue}`);
+            // 🔁 숫자 키는 건너뛰고, 문자 키만 출력!
+            if (!isNaN(Number(key))) continue;
+          
+            let displayValue: string;
+          
+            if (typeof value === 'bigint') {
+              const decimals = await getTokenDecimals(log.address);
+              displayValue = ethers.formatUnits(value, decimals);
+            } else if (ethers.isAddress(value.toString())) {
+              const ensName = await resolveENS(value.toString());
+              displayValue = ensName;
+            } else {
+              displayValue = value.toString();
             }
-        }
+          
+            paramOutputs.push(`${key}: ${displayValue}`);
+          }
 
-        console.log(`${parsed.name}(${paramOutputs.join(", ")})`);
+        console.log(`✅ ${parsed.name}(${paramOutputs.join(", ")})`);
 
     } catch (e) {
-        console.error("Failed to decode event log:", (e as Error).message);
+        const topic0 = log.topics[0] ?? "";
+        const reason = (e as Error).message;
+        failedLogs.push({ address: log.address, topic: topic0, reason });
+        console.warn(`❌ Failed to decode log for ${log.address} | topic0: ${topic0} | reason: ${reason}`);
+        const knownName = getEventSignatureName(topic0);
+        if (knownName !== "UnknownEvent") {
+            console.log(`📌 Likely event: ${knownName}`);
+        }
     }
 }
 
-// 메인 함수
 async function main() {
     const receipt = await getTxReceipt(txHash);
 
@@ -111,10 +118,10 @@ async function main() {
 
     for (const [i, log] of receipt.logs.entries()) {
         console.log(`Event log ${i + 1}:`);
-        console.log("Address:", log.address);
-        console.log("Topics:", log.topics);
-        console.log("Data:", log.data);
-        console.log("--------------------------------");
+        // console.log("Address:", log.address);
+        // console.log("Topics:", log.topics);
+        // console.log("Data:", log.data);
+        // console.log("--------------------------------");
 
         const isCA = await isContract(log.address);
         if (isCA) {
@@ -122,11 +129,19 @@ async function main() {
                 const abi = await getAbiFromEtherscan(log.address);
                 await decodeEventLogs(log, abi);
             } catch (e) {
-                console.warn("⚠️ ABI fetch or decode failed:", (e as Error).message);
+                const topic0 = log.topics[0] ?? "";
+                const reason = (e as Error).message;
+                failedLogs.push({ address: log.address, topic: topic0, reason });
+                console.warn("⚠️ ABI fetch or decode failed:", reason);
             }
         } else {
             console.log("This is an EOA address. No ABI needed.");
         }
+    }
+
+    if (failedLogs.length > 0) {
+        fs.writeFileSync("failed_logs.json", JSON.stringify(failedLogs, null, 2));
+        console.log("\n❗ Some logs failed to decode. See failed_logs.json for details.");
     }
 }
 

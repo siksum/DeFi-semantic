@@ -14,6 +14,7 @@ const logFilePath = path.join(
   "logs/0xb5c8bd9430b6cc87a0e2fe110ece6bf527fa4f170a4bc8cd032f768fc5219838.json"
 );
 const addressClassificationMap: Record<string, ContractClassification> = {};
+const tokenMetadataCache: Record<string, { symbol: string; decimals: number }> = {};
 
 export async function extractAddressesFromLogs(
   logs: any[],
@@ -50,6 +51,8 @@ export async function extractAddressesFromLogs(
 }
 
 async function decodeLogs(logs: ethers.Log[]) {
+  const valueToTokenMap: Record<string, string> = {};
+
   for (const log of logs) {
     const info = addressClassificationMap[log.address.toLowerCase()];
     const abiAddress = info?.isProxy && info.implementation ? info.implementation : log.address;
@@ -70,17 +73,6 @@ async function decodeLogs(logs: ethers.Log[]) {
 
       console.log(`\n Event Index: ${log.index}`);
       console.log(`[${decoded.name}] from ${log.address}`);
-
-      const possibleTokenAddresses = [log.address];
-      for (const arg of decoded.args) {
-        if (ethers.isAddress(arg)) possibleTokenAddresses.push(arg);
-      }
-
-      let tokenMetadata = null;
-      for (const addr of possibleTokenAddresses) {
-        tokenMetadata = await getTokenMetadata(addr, provider);
-        if (tokenMetadata.symbol !== "?") break;
-      }
 
       for (const [i, input] of decoded.fragment.inputs.entries()) {
         const name = input.name || `arg${i}`;
@@ -105,15 +97,50 @@ async function decodeLogs(logs: ethers.Log[]) {
             nameLower.includes("rate") ||
             nameLower.includes("borrow"))
         ) {
-          let symbol = tokenMetadata?.symbol || "?";
-          let decimals = tokenMetadata?.decimals || 18;
+          let tokenMetadata = { symbol: "?", decimals: 18 };
+          let candidateAddresses: string[] = [];
+
+          for (const [j, arg] of decoded.args.entries()) {
+            if (ethers.isAddress(arg)) candidateAddresses.push(arg);
+          }
+
+          candidateAddresses.push(log.address);
+
+          for (const addr of candidateAddresses) {
+            if (tokenMetadataCache[addr]) {
+              tokenMetadata = tokenMetadataCache[addr];
+              break;
+            }
+            const meta = await getTokenMetadata(addr, provider);
+            if (meta.symbol !== "?") {
+              tokenMetadata = meta;
+              tokenMetadataCache[addr] = meta;
+              break;
+            }
+          }
+
+          const rawValueStr = value.toString();
+
+          if (valueToTokenMap[rawValueStr]) {
+            const reused = tokenMetadataCache[valueToTokenMap[rawValueStr]];
+            if (reused) tokenMetadata = reused;
+          } else {
+            for (const addr of candidateAddresses) {
+              if (tokenMetadataCache[addr]) {
+                valueToTokenMap[rawValueStr] = addr;
+                break;
+              }
+            }
+          }
+
+          let symbol = tokenMetadata.symbol;
+          let decimals = tokenMetadata.decimals;
 
           if (
             (nameLower.includes("mintamount") ||
               nameLower.includes("borrowamount") ||
               nameLower.includes("repayamount")) &&
-            symbol.startsWith("cETH") 
-            // && tokenMetadata?.decimals === 8
+            symbol.startsWith("c") 
           ) {
             symbol = symbol.slice(1);
             decimals = 18;

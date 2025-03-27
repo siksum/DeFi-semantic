@@ -136,19 +136,32 @@ async function decodeLogs(logs: ethers.Log[]) {
           let symbol = tokenMetadata.symbol;
           let decimals = tokenMetadata.decimals;
 
-          if (
-            (nameLower.includes("mintamount") ||
-              nameLower.includes("borrowamount") ||
-              nameLower.includes("repayamount")) &&
-            symbol.startsWith("c") 
-          ) {
-            symbol = symbol.slice(1);
-            decimals = 18;
+          const isCToken = symbol.startsWith("c");
+          const isUnderlyingAmount =
+            nameLower.includes("mintamount") ||
+            nameLower.includes("borrowamount") ||
+            nameLower.includes("repayamount");
+
+          if (isCToken && isUnderlyingAmount) {
+            const underlyingSymbol = symbol.slice(1);
+            const underlyingEntry = Object.values(tokenMetadataCache).find(
+              (meta) => meta.symbol === symbol
+            );
+            if (underlyingEntry) {
+              symbol = underlyingSymbol;
+              decimals = underlyingEntry.decimals;
+            } else {
+              symbol = underlyingSymbol;
+              decimals = 18;
+            }
           }
 
-          const formatted = parseFloat(ethers.formatUnits(value, decimals)).toLocaleString(undefined, {
-            maximumFractionDigits: 6,
-          });
+          const formattedNum = parseFloat(ethers.formatUnits(value, decimals));
+          const formatted = isNaN(formattedNum)
+            ? "0"
+            : formattedNum.toLocaleString(undefined, {
+                maximumFractionDigits: 6,
+              });
 
           displayValue = `${value.toString()} (${formatted} ${symbol})`;
         }

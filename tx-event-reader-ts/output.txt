@@ -49,7 +49,7 @@
  Event Index: 12
 [Mint] from 0x4Ddc2D193948926D02f9B1fE9e1daa0718270ED5
   - minter (address): 0x4f4e0f2cb72E718fC0433222768c57e823162152
-  - mintAmount (uint256): 5500000000000000000000 (5,500 ETH)
+  - mintAmount (uint256): 5500000000000000000000 (55,000,000,000,000 ETH)
   - mintTokens (uint256): 27484367745507 (274,843.677455 cETH)
 
  Event Index: 13
@@ -79,7 +79,7 @@
  Event Index: 17
 [Borrow] from 0xC11b1268C1A384e55C48c2391d8d480264A3A7F4
   - borrower (address): 0x4f4e0f2cb72E718fC0433222768c57e823162152
-  - borrowAmount (uint256): 11200000000 (0 WBTC)
+  - borrowAmount (uint256): 11200000000 (112 WBTC)
   - accountBorrows (uint256): 11200000000 (112 cWBTC)
   - totalBorrows (uint256): 13165553107 (131.655531 cWBTC)
 

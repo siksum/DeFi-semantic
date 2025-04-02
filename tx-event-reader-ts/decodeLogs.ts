@@ -51,6 +51,89 @@ export async function extractAddressesFromLogs(
   return results;
 }
 
+function loadSolcVersion(version: string): Promise<typeof solc> {
+  return new Promise((resolve, reject) => {
+    solc.loadRemoteVersion(version, (err: Error | null, solcSnapshot: typeof solc | undefined) => {
+      if (err || !solcSnapshot) reject(err || new Error("Failed to load solc"));
+      else resolve(solcSnapshot);
+    });
+  });
+}
+
+async function fetchAbiFromEtherscan(address: string): Promise<any[] | null> {
+  const apiKey = process.env.ETHERSCAN_API_KEY;
+  const url = `https://api.etherscan.io/api?module=contract&action=getsourcecode&address=${address}&apikey=${apiKey}`;
+
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
+
+    if (
+      data.status === "1" &&
+      data.result.length > 0 &&
+      data.result[0].SourceCode !== "Contract source code not verified"
+    ) {
+      const result = data.result[0];
+      const sourceCodeRaw = result.SourceCode;
+      const contractName = result.ContractName || "Contract";
+      const compilerVersion = result.CompilerVersion; 
+
+      if (!compilerVersion) {
+        console.warn(`No compiler version found for ${address}`);
+        return null;
+      }
+
+      const input = {
+        language: "Solidity",
+        sources: {
+          [`${contractName}.sol`]: {
+            content: sourceCodeRaw,
+          },
+        },
+        settings: {
+          outputSelection: {
+            "*": {
+              "*": ["abi"],
+            },
+          },
+        },
+      };
+
+      console.log(`Loading solc ${compilerVersion} for ${address}...`);
+      const solcInstance = await loadSolcVersion(compilerVersion);
+
+      const output = JSON.parse(solcInstance.compile(JSON.stringify(input)));
+
+      if (output.errors) {
+        for (const error of output.errors) {
+          if (error.severity === "error") {
+            console.error(`Compiler error: ${error.formattedMessage}`);
+            return null;
+          }
+        }
+      }
+
+      const abis: any[] = [];
+      for (const file in output.contracts) {
+        for (const contract in output.contracts[file]) {
+          abis.push(...output.contracts[file][contract].abi);
+        }
+      }
+
+      if (abis.length > 0) {
+        console.log(`ABI extracted from ${compilerVersion}`);
+        return abis;
+      } else {
+        console.warn(`Compiled successfully, but ABI is empty for ${address}`);
+      }
+    }
+  } catch (err) {
+    console.warn(`Failed to fetch ABI from Etherscan for ${address}`, err);
+  }
+
+  return null;
+}
+
 async function decodeLogs(logs: ethers.Log[]) {
   const valueToTokenMap: Record<string, string> = {};
 
@@ -60,12 +143,9 @@ async function decodeLogs(logs: ethers.Log[]) {
     let abi = await getAbiWithProxySupport(abiAddress, provider);
 
     if (!abi || abi.length === 0) {
-      const contractCode = await provider.getCode(abiAddress);
-      if (contractCode && contractCode !== "0x") {
+      abi = await fetchAbiFromEtherscan(abiAddress);
+      if (!abi || abi.length === 0) {
         console.warn(`Contract ${abiAddress} has bytecode but no verified ABI. Manual ABI recovery not implemented.`);
-        continue;
-      } else {
-        console.warn(`Contract code not found for ${abiAddress}`);
         continue;
       }
     }

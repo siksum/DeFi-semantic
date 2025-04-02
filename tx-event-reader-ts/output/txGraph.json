@@ -1,0 +1,269 @@
+[
+  {
+    "from": "0x1E0447b19BB6EcFdAe1e4AE1694b0C3659614e4e",
+    "to": "0x0de0dD63d9fB65450339ef27577d4f39d095EB85",
+    "function": "LogOperation",
+    "index": 4
+  },
+  {
+    "from": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+    "to": "0x1E0447b19BB6EcFdAe1e4AE1694b0C3659614e4e",
+    "amount": "10000000000000000000000",
+    "function": "Transfer",
+    "index": 6
+  },
+  {
+    "from": "0x1E0447b19BB6EcFdAe1e4AE1694b0C3659614e4e",
+    "to": "0x0de0dD63d9fB65450339ef27577d4f39d095EB85",
+    "function": "LogWithdraw",
+    "index": 7
+  },
+  {
+    "from": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+    "to": "0x4f4e0f2cb72E718fC0433222768c57e823162152",
+    "amount": "10000000000000000000000",
+    "function": "Withdrawal",
+    "index": 8
+  },
+  {
+    "from": "0x3d9819210A31b4961b30EF54bE2aeD79B9c9Cd3B",
+    "to": "0xC11b1268C1A384e55C48c2391d8d480264A3A7F4",
+    "function": "MarketEntered",
+    "index": 9
+  },
+  {
+    "from": "0x3d9819210A31b4961b30EF54bE2aeD79B9c9Cd3B",
+    "to": "0x4Ddc2D193948926D02f9B1fE9e1daa0718270ED5",
+    "function": "MarketEntered",
+    "index": 10
+  },
+  {
+    "from": "0x4Ddc2D193948926D02f9B1fE9e1daa0718270ED5",
+    "to": "0x4f4e0f2cb72E718fC0433222768c57e823162152",
+    "amount": "5500000000000000000000",
+    "function": "Mint",
+    "index": 12
+  },
+  {
+    "from": "0x4Ddc2D193948926D02f9B1fE9e1daa0718270ED5",
+    "to": "0x4Ddc2D193948926D02f9B1fE9e1daa0718270ED5",
+    "amount": "27484367745507",
+    "function": "Transfer",
+    "index": 13
+  },
+  {
+    "from": "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
+    "to": "0xC11b1268C1A384e55C48c2391d8d480264A3A7F4",
+    "amount": "11200000000",
+    "function": "Transfer",
+    "index": 16
+  },
+  {
+    "from": "0xC11b1268C1A384e55C48c2391d8d480264A3A7F4",
+    "to": "0x4f4e0f2cb72E718fC0433222768c57e823162152",
+    "amount": "11200000000",
+    "function": "Borrow",
+    "index": 17
+  },
+  {
+    "from": "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
+    "to": "0x4f4e0f2cb72E718fC0433222768c57e823162152",
+    "amount": "11200000000",
+    "function": "Approval",
+    "index": 18
+  },
+  {
+    "from": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+    "to": "0xb0200B0677dD825bb32B93d055eBb9dc3521db9D",
+    "amount": "1300000000000000000000",
+    "function": "Deposit",
+    "index": 19
+  },
+  {
+    "from": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+    "to": "0x8B3d70d628Ebd30D4A2ea82DB95bA2e906c71633",
+    "amount": "91505033541987",
+    "function": "Transfer",
+    "index": 20
+  },
+  {
+    "from": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+    "to": "0xb017C9936F9271dAFf23d4c9876651442958A80F",
+    "amount": "82354530187789",
+    "function": "Transfer",
+    "index": 21
+  },
+  {
+    "from": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+    "to": "0x77f973FCaF871459aa58cd81881Ce453759281bC",
+    "amount": "4698019801980198019822",
+    "function": "Transfer",
+    "index": 22
+  },
+  {
+    "from": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+    "to": "0xb0200B0677dD825bb32B93d055eBb9dc3521db9D",
+    "amount": "1300000000000000000000",
+    "function": "Transfer",
+    "index": 23
+  },
+  {
+    "from": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+    "to": "0x8B3d70d628Ebd30D4A2ea82DB95bA2e906c71633",
+    "amount": "5637623762376237623786",
+    "function": "Transfer",
+    "index": 24
+  },
+  {
+    "from": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+    "to": "0xb017C9936F9271dAFf23d4c9876651442958A80F",
+    "amount": "5637623762376237623786",
+    "function": "Transfer",
+    "index": 25
+  },
+  {
+    "from": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+    "to": "0x65bF64Ff5f51272f729BDcD7AcFB00677ced86Cd",
+    "amount": "5637623762376237623786",
+    "function": "Transfer",
+    "index": 26
+  },
+  {
+    "from": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+    "to": "0x57f8160e1c59D16C01BbE181fD94db4E56b60495",
+    "amount": "5637623762376237623786",
+    "function": "Withdrawal",
+    "index": 27
+  },
+  {
+    "from": "0x65bF64Ff5f51272f729BDcD7AcFB00677ced86Cd",
+    "to": "0x57f8160e1c59D16C01BbE181fD94db4E56b60495",
+    "amount": "5637623762376237623786",
+    "function": "EtherReceival",
+    "index": 28
+  },
+  {
+    "from": "0x57f8160e1c59D16C01BbE181fD94db4E56b60495",
+    "to": "0x65bF64Ff5f51272f729BDcD7AcFB00677ced86Cd",
+    "amount": "5637623762376237623786",
+    "function": "TradeExecute",
+    "index": 29
+  },
+  {
+    "from": "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
+    "to": "0x4d2f5cFbA55AE412221182D8475bC85799A5644b",
+    "amount": "5134557581",
+    "function": "Transfer",
+    "index": 30
+  },
+  {
+    "from": "0x4d2f5cFbA55AE412221182D8475bC85799A5644b",
+    "to": "0x31E085Afd48a1d6e51Cc193153d625e8f0514C7F",
+    "amount": "5637623762376237623786",
+    "function": "TokenPurchase",
+    "index": 31
+  },
+  {
+    "from": "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
+    "to": "0x31E085Afd48a1d6e51Cc193153d625e8f0514C7F",
+    "amount": "5134557580",
+    "function": "Transfer",
+    "index": 32
+  },
+  {
+    "from": "0x31E085Afd48a1d6e51Cc193153d625e8f0514C7F",
+    "to": "0x65bF64Ff5f51272f729BDcD7AcFB00677ced86Cd",
+    "amount": "5637623762376237623786",
+    "function": "TradeExecute",
+    "index": 33
+  },
+  {
+    "from": "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
+    "to": "0x65bF64Ff5f51272f729BDcD7AcFB00677ced86Cd",
+    "amount": "5134557580",
+    "function": "Transfer",
+    "index": 34
+  },
+  {
+    "from": "0x65bF64Ff5f51272f729BDcD7AcFB00677ced86Cd",
+    "to": "0xb017C9936F9271dAFf23d4c9876651442958A80F",
+    "amount": "5637623762376237623786",
+    "function": "KyberTrade",
+    "index": 35
+  },
+  {
+    "from": "0x818E6FECD516Ecc3849DAf6845e3EC868087B755",
+    "to": "0xb017C9936F9271dAFf23d4c9876651442958A80F",
+    "amount": "5637623762376237623786",
+    "function": "ExecuteTrade",
+    "index": 36
+  },
+  {
+    "from": "0x77f973FCaF871459aa58cd81881Ce453759281bC",
+    "to": "0xb0200B0677dD825bb32B93d055eBb9dc3521db9D",
+    "amount": "4698019801980198019822",
+    "function": "Borrow",
+    "index": 37
+  },
+  {
+    "from": "0xb0200B0677dD825bb32B93d055eBb9dc3521db9D",
+    "to": "0x0000000000000000000000000000000000000000",
+    "amount": "9852209840000000",
+    "function": "Transfer",
+    "index": 38
+  },
+  {
+    "from": "0xb0200B0677dD825bb32B93d055eBb9dc3521db9D",
+    "to": "0x148426fDC4C8a51b96b4BEd827907b5FA6491aD0",
+    "amount": "1300000000000000000000",
+    "function": "Mint",
+    "index": 39
+  },
+  {
+    "from": "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
+    "to": "0x4f4e0f2cb72E718fC0433222768c57e823162152",
+    "amount": "11200000000",
+    "function": "Transfer",
+    "index": 40
+  },
+  {
+    "from": "0x4d2f5cFbA55AE412221182D8475bC85799A5644b",
+    "to": "0x4f4e0f2cb72E718fC0433222768c57e823162152",
+    "amount": "11200000000",
+    "function": "EthPurchase",
+    "index": 41
+  },
+  {
+    "from": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+    "to": "0x4f4e0f2cb72E718fC0433222768c57e823162152",
+    "amount": "10000000000000010000000",
+    "function": "Deposit",
+    "index": 42
+  },
+  {
+    "from": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+    "to": "0x4f4e0f2cb72E718fC0433222768c57e823162152",
+    "amount": "10000000000000010000000",
+    "function": "Transfer",
+    "index": 43
+  },
+  {
+    "from": "0x1E0447b19BB6EcFdAe1e4AE1694b0C3659614e4e",
+    "to": "0x0de0dD63d9fB65450339ef27577d4f39d095EB85",
+    "function": "LogCall",
+    "index": 44
+  },
+  {
+    "from": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+    "to": "0x0de0dD63d9fB65450339ef27577d4f39d095EB85",
+    "amount": "10000000000000010000000",
+    "function": "Transfer",
+    "index": 45
+  },
+  {
+    "from": "0x1E0447b19BB6EcFdAe1e4AE1694b0C3659614e4e",
+    "to": "0x0de0dD63d9fB65450339ef27577d4f39d095EB85",
+    "function": "LogDeposit",
+    "index": 46
+  }
+]

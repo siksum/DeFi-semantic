@@ -1,74 +1,67 @@
-// This file will generate a semantic graph of address interactions and value flows
-// Based on previously decoded logs
-
 import { ethers } from "ethers";
 import * as fs from "fs";
 import * as path from "path";
 
-// A simplified type for a log entry with decoded data
-interface DecodedLog {
-  index: number;
-  event: string;
-  from: string;
-  to: string;
-  token?: string;
-  amount?: number;
-}
+const decodedLogPath = path.join(__dirname, "output/decodedLogs.json");
+const outputPath = path.join(__dirname, "output/txGraph.json");
 
-interface Node {
-  address: string;
-  balanceChanges: Record<string, number>; // token => net change
+interface LogEntry {
+//   index: number;
+  function: string;
+  from: string;
+  args: Record<string, { type: string; value: string }>;
 }
 
 interface Edge {
   from: string;
   to: string;
-  token?: string;
-  amount?: number;
-  event: string;
+  amount?: string;
+  function: string;
   index: number;
 }
 
-const decodedLogPath = path.join(__dirname, "./output/decodedLogs.json");
-
-function loadDecodedLogs(): DecodedLog[] {
+async function buildTransactionGraph() {
   const raw = fs.readFileSync(decodedLogPath, "utf-8");
-  return JSON.parse(raw);
-}
+  const logs: LogEntry[] = JSON.parse(raw);
 
-function buildGraph(logs: DecodedLog[]): { nodes: Record<string, Node>; edges: Edge[] } {
-  const nodes: Record<string, Node> = {};
   const edges: Edge[] = [];
 
   for (const log of logs) {
-    const { from, to, token, amount, event, index } = log;
-    if (!from || !to || !amount || !token) continue;
+    const { function: funcName, from, args, index } = log;
+    let to: string | undefined;
+    let amount: bigint | undefined;
+    const candidateAddresses: string[] = [];
 
-    if (!nodes[from]) nodes[from] = { address: from, balanceChanges: {} };
-    if (!nodes[to]) nodes[to] = { address: to, balanceChanges: {} };
+    for (const [argName, argValue] of Object.entries(args)) {
+      const { type, value } = argValue as { type: string; value: string };
 
-    nodes[from].balanceChanges[token] = (nodes[from].balanceChanges[token] || 0) - amount;
-    nodes[to].balanceChanges[token] = (nodes[to].balanceChanges[token] || 0) + amount;
+      if (type === "address") {
+        const normalized = ethers.getAddress(value);
+        if (!to) to = normalized;
+        else candidateAddresses.push(normalized);
+      }
 
-    edges.push({ from, to, token, amount, event, index });
+      if (type.startsWith("uint")) {
+        const num = BigInt(value);
+        if (num > 0n) {
+          if (!amount) amount = num;
+        }
+      }
+    }
+
+    if (to) {
+      edges.push({
+        from,
+        to,
+        amount: amount?.toString(),
+        function: funcName,
+        index,
+      });
+    }
   }
 
-  return { nodes, edges };
+  fs.writeFileSync(outputPath, JSON.stringify(edges, null, 2));
+  console.log(`Graph data written to ${outputPath}`);
 }
 
-function exportGraphToJson(nodes: Record<string, Node>, edges: Edge[], outputPath: string) {
-  const graph = {
-    nodes: Object.values(nodes),
-    edges,
-  };
-  fs.writeFileSync(outputPath, JSON.stringify(graph, null, 2));
-}
-
-function main() {
-  const logs = loadDecodedLogs();
-  const { nodes, edges } = buildGraph(logs);
-  exportGraphToJson(nodes, edges, path.join(__dirname, "./output/graph.json"));
-  console.log("Graph exported to ./output/graph.json");
-}
-
-main();
+buildTransactionGraph().catch(console.error);

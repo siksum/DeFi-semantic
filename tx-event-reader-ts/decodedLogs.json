@@ -1,0 +1,883 @@
+[
+  {
+    "index": 4,
+    "function": "LogOperation",
+    "from": "0x1E0447b19BB6EcFdAe1e4AE1694b0C3659614e4e",
+    "args": {
+      "sender": {
+        "type": "address",
+        "value": "0x0de0dD63d9fB65450339ef27577d4f39d095EB85"
+      }
+    }
+  },
+  {
+    "index": 5,
+    "function": "LogIndexUpdate",
+    "from": "0x1E0447b19BB6EcFdAe1e4AE1694b0C3659614e4e",
+    "args": {
+      "market": {
+        "type": "uint256",
+        "value": "0"
+      },
+      "index": {
+        "type": "tuple",
+        "value": "1006697529141321337,1000799953468328409,1581730737"
+      }
+    }
+  },
+  {
+    "index": 6,
+    "function": "Transfer",
+    "from": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+    "args": {
+      "src": {
+        "type": "address",
+        "value": "0x1E0447b19BB6EcFdAe1e4AE1694b0C3659614e4e"
+      },
+      "dst": {
+        "type": "address",
+        "value": "0x4f4e0f2cb72E718fC0433222768c57e823162152"
+      },
+      "wad": {
+        "type": "uint256",
+        "value": "10000000000000000000000"
+      }
+    }
+  },
+  {
+    "index": 7,
+    "function": "LogWithdraw",
+    "from": "0x1E0447b19BB6EcFdAe1e4AE1694b0C3659614e4e",
+    "args": {
+      "accountOwner": {
+        "type": "address",
+        "value": "0x0de0dD63d9fB65450339ef27577d4f39d095EB85"
+      },
+      "accountNumber": {
+        "type": "uint256",
+        "value": "0"
+      },
+      "market": {
+        "type": "uint256",
+        "value": "0"
+      },
+      "update": {
+        "type": "tuple",
+        "value": "false,10000000000000000000000,false,9933470293236598077624"
+      },
+      "to": {
+        "type": "address",
+        "value": "0x4f4e0f2cb72E718fC0433222768c57e823162152"
+      }
+    }
+  },
+  {
+    "index": 8,
+    "function": "Withdrawal",
+    "from": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+    "args": {
+      "src": {
+        "type": "address",
+        "value": "0x4f4e0f2cb72E718fC0433222768c57e823162152"
+      },
+      "wad": {
+        "type": "uint256",
+        "value": "10000000000000000000000"
+      }
+    }
+  },
+  {
+    "index": 9,
+    "function": "MarketEntered",
+    "from": "0x3d9819210A31b4961b30EF54bE2aeD79B9c9Cd3B",
+    "args": {
+      "cToken": {
+        "type": "address",
+        "value": "0xC11b1268C1A384e55C48c2391d8d480264A3A7F4"
+      },
+      "account": {
+        "type": "address",
+        "value": "0x4f4e0f2cb72E718fC0433222768c57e823162152"
+      }
+    }
+  },
+  {
+    "index": 10,
+    "function": "MarketEntered",
+    "from": "0x3d9819210A31b4961b30EF54bE2aeD79B9c9Cd3B",
+    "args": {
+      "cToken": {
+        "type": "address",
+        "value": "0x4Ddc2D193948926D02f9B1fE9e1daa0718270ED5"
+      },
+      "account": {
+        "type": "address",
+        "value": "0x4f4e0f2cb72E718fC0433222768c57e823162152"
+      }
+    }
+  },
+  {
+    "index": 11,
+    "function": "AccrueInterest",
+    "from": "0x4Ddc2D193948926D02f9B1fE9e1daa0718270ED5",
+    "args": {
+      "interestAccumulated": {
+        "type": "uint256",
+        "value": "131387170765778"
+      },
+      "borrowIndex": {
+        "type": "uint256",
+        "value": "1020377469233107697"
+      },
+      "totalBorrows": {
+        "type": "uint256",
+        "value": "1688779324980156620402"
+      }
+    }
+  },
+  {
+    "index": 12,
+    "function": "Mint",
+    "from": "0x4Ddc2D193948926D02f9B1fE9e1daa0718270ED5",
+    "args": {
+      "minter": {
+        "type": "address",
+        "value": "0x4f4e0f2cb72E718fC0433222768c57e823162152"
+      },
+      "mintAmount": {
+        "type": "uint256",
+        "value": "5500000000000000000000"
+      },
+      "mintTokens": {
+        "type": "uint256",
+        "value": "27484367745507"
+      }
+    }
+  },
+  {
+    "index": 13,
+    "function": "Transfer",
+    "from": "0x4Ddc2D193948926D02f9B1fE9e1daa0718270ED5",
+    "args": {
+      "from": {
+        "type": "address",
+        "value": "0x4Ddc2D193948926D02f9B1fE9e1daa0718270ED5"
+      },
+      "to": {
+        "type": "address",
+        "value": "0x4f4e0f2cb72E718fC0433222768c57e823162152"
+      },
+      "amount": {
+        "type": "uint256",
+        "value": "27484367745507"
+      }
+    }
+  },
+  {
+    "index": 14,
+    "function": "AccrueInterest",
+    "from": "0x4Ddc2D193948926D02f9B1fE9e1daa0718270ED5",
+    "args": {
+      "interestAccumulated": {
+        "type": "uint256",
+        "value": "0"
+      },
+      "borrowIndex": {
+        "type": "uint256",
+        "value": "1020377469233107697"
+      },
+      "totalBorrows": {
+        "type": "uint256",
+        "value": "1688779324980156620402"
+      }
+    }
+  },
+  {
+    "index": 15,
+    "function": "AccrueInterest",
+    "from": "0xC11b1268C1A384e55C48c2391d8d480264A3A7F4",
+    "args": {
+      "interestAccumulated": {
+        "type": "uint256",
+        "value": "2205"
+      },
+      "borrowIndex": {
+        "type": "uint256",
+        "value": "1035227250015402230"
+      },
+      "totalBorrows": {
+        "type": "uint256",
+        "value": "1965553107"
+      }
+    }
+  },
+  {
+    "index": 16,
+    "function": "Transfer",
+    "from": "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
+    "args": {
+      "from": {
+        "type": "address",
+        "value": "0xC11b1268C1A384e55C48c2391d8d480264A3A7F4"
+      },
+      "to": {
+        "type": "address",
+        "value": "0x4f4e0f2cb72E718fC0433222768c57e823162152"
+      },
+      "value": {
+        "type": "uint256",
+        "value": "11200000000"
+      }
+    }
+  },
+  {
+    "index": 17,
+    "function": "Borrow",
+    "from": "0xC11b1268C1A384e55C48c2391d8d480264A3A7F4",
+    "args": {
+      "borrower": {
+        "type": "address",
+        "value": "0x4f4e0f2cb72E718fC0433222768c57e823162152"
+      },
+      "borrowAmount": {
+        "type": "uint256",
+        "value": "11200000000"
+      },
+      "accountBorrows": {
+        "type": "uint256",
+        "value": "11200000000"
+      },
+      "totalBorrows": {
+        "type": "uint256",
+        "value": "13165553107"
+      }
+    }
+  },
+  {
+    "index": 18,
+    "function": "Approval",
+    "from": "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
+    "args": {
+      "owner": {
+        "type": "address",
+        "value": "0x4f4e0f2cb72E718fC0433222768c57e823162152"
+      },
+      "spender": {
+        "type": "address",
+        "value": "0x4d2f5cFbA55AE412221182D8475bC85799A5644b"
+      },
+      "value": {
+        "type": "uint256",
+        "value": "11200000000"
+      }
+    }
+  },
+  {
+    "index": 19,
+    "function": "Deposit",
+    "from": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+    "args": {
+      "dst": {
+        "type": "address",
+        "value": "0xb0200B0677dD825bb32B93d055eBb9dc3521db9D"
+      },
+      "wad": {
+        "type": "uint256",
+        "value": "1300000000000000000000"
+      }
+    }
+  },
+  {
+    "index": 20,
+    "function": "Transfer",
+    "from": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+    "args": {
+      "src": {
+        "type": "address",
+        "value": "0x8B3d70d628Ebd30D4A2ea82DB95bA2e906c71633"
+      },
+      "dst": {
+        "type": "address",
+        "value": "0xb017C9936F9271dAFf23d4c9876651442958A80F"
+      },
+      "wad": {
+        "type": "uint256",
+        "value": "91505033541987"
+      }
+    }
+  },
+  {
+    "index": 21,
+    "function": "Transfer",
+    "from": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+    "args": {
+      "src": {
+        "type": "address",
+        "value": "0xb017C9936F9271dAFf23d4c9876651442958A80F"
+      },
+      "dst": {
+        "type": "address",
+        "value": "0x77f973FCaF871459aa58cd81881Ce453759281bC"
+      },
+      "wad": {
+        "type": "uint256",
+        "value": "82354530187789"
+      }
+    }
+  },
+  {
+    "index": 22,
+    "function": "Transfer",
+    "from": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+    "args": {
+      "src": {
+        "type": "address",
+        "value": "0x77f973FCaF871459aa58cd81881Ce453759281bC"
+      },
+      "dst": {
+        "type": "address",
+        "value": "0x8B3d70d628Ebd30D4A2ea82DB95bA2e906c71633"
+      },
+      "wad": {
+        "type": "uint256",
+        "value": "4698019801980198019822"
+      }
+    }
+  },
+  {
+    "index": 23,
+    "function": "Transfer",
+    "from": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+    "args": {
+      "src": {
+        "type": "address",
+        "value": "0xb0200B0677dD825bb32B93d055eBb9dc3521db9D"
+      },
+      "dst": {
+        "type": "address",
+        "value": "0x8B3d70d628Ebd30D4A2ea82DB95bA2e906c71633"
+      },
+      "wad": {
+        "type": "uint256",
+        "value": "1300000000000000000000"
+      }
+    }
+  },
+  {
+    "index": 24,
+    "function": "Transfer",
+    "from": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+    "args": {
+      "src": {
+        "type": "address",
+        "value": "0x8B3d70d628Ebd30D4A2ea82DB95bA2e906c71633"
+      },
+      "dst": {
+        "type": "address",
+        "value": "0xb017C9936F9271dAFf23d4c9876651442958A80F"
+      },
+      "wad": {
+        "type": "uint256",
+        "value": "5637623762376237623786"
+      }
+    }
+  },
+  {
+    "index": 25,
+    "function": "Transfer",
+    "from": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+    "args": {
+      "src": {
+        "type": "address",
+        "value": "0xb017C9936F9271dAFf23d4c9876651442958A80F"
+      },
+      "dst": {
+        "type": "address",
+        "value": "0x65bF64Ff5f51272f729BDcD7AcFB00677ced86Cd"
+      },
+      "wad": {
+        "type": "uint256",
+        "value": "5637623762376237623786"
+      }
+    }
+  },
+  {
+    "index": 26,
+    "function": "Transfer",
+    "from": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+    "args": {
+      "src": {
+        "type": "address",
+        "value": "0x65bF64Ff5f51272f729BDcD7AcFB00677ced86Cd"
+      },
+      "dst": {
+        "type": "address",
+        "value": "0x57f8160e1c59D16C01BbE181fD94db4E56b60495"
+      },
+      "wad": {
+        "type": "uint256",
+        "value": "5637623762376237623786"
+      }
+    }
+  },
+  {
+    "index": 27,
+    "function": "Withdrawal",
+    "from": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+    "args": {
+      "src": {
+        "type": "address",
+        "value": "0x57f8160e1c59D16C01BbE181fD94db4E56b60495"
+      },
+      "wad": {
+        "type": "uint256",
+        "value": "5637623762376237623786"
+      }
+    }
+  },
+  {
+    "index": 28,
+    "function": "EtherReceival",
+    "from": "0x65bF64Ff5f51272f729BDcD7AcFB00677ced86Cd",
+    "args": {
+      "sender": {
+        "type": "address",
+        "value": "0x57f8160e1c59D16C01BbE181fD94db4E56b60495"
+      },
+      "amount": {
+        "type": "uint256",
+        "value": "5637623762376237623786"
+      }
+    }
+  },
+  {
+    "index": 29,
+    "function": "TradeExecute",
+    "from": "0x57f8160e1c59D16C01BbE181fD94db4E56b60495",
+    "args": {
+      "sender": {
+        "type": "address",
+        "value": "0x65bF64Ff5f51272f729BDcD7AcFB00677ced86Cd"
+      },
+      "src": {
+        "type": "address",
+        "value": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
+      },
+      "srcAmount": {
+        "type": "uint256",
+        "value": "5637623762376237623786"
+      },
+      "destToken": {
+        "type": "address",
+        "value": "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE"
+      },
+      "destAmount": {
+        "type": "uint256",
+        "value": "5637623762376237623786"
+      },
+      "destAddress": {
+        "type": "address",
+        "value": "0x65bF64Ff5f51272f729BDcD7AcFB00677ced86Cd"
+      }
+    }
+  },
+  {
+    "index": 30,
+    "function": "Transfer",
+    "from": "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
+    "args": {
+      "from": {
+        "type": "address",
+        "value": "0x4d2f5cFbA55AE412221182D8475bC85799A5644b"
+      },
+      "to": {
+        "type": "address",
+        "value": "0x31E085Afd48a1d6e51Cc193153d625e8f0514C7F"
+      },
+      "value": {
+        "type": "uint256",
+        "value": "5134557581"
+      }
+    }
+  },
+  {
+    "index": 31,
+    "function": "TokenPurchase",
+    "from": "0x4d2f5cFbA55AE412221182D8475bC85799A5644b",
+    "args": {
+      "buyer": {
+        "type": "address",
+        "value": "0x31E085Afd48a1d6e51Cc193153d625e8f0514C7F"
+      },
+      "eth_sold": {
+        "type": "uint256",
+        "value": "5637623762376237623786"
+      },
+      "tokens_bought": {
+        "type": "uint256",
+        "value": "5134557581"
+      }
+    }
+  },
+  {
+    "index": 32,
+    "function": "Transfer",
+    "from": "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
+    "args": {
+      "from": {
+        "type": "address",
+        "value": "0x31E085Afd48a1d6e51Cc193153d625e8f0514C7F"
+      },
+      "to": {
+        "type": "address",
+        "value": "0x65bF64Ff5f51272f729BDcD7AcFB00677ced86Cd"
+      },
+      "value": {
+        "type": "uint256",
+        "value": "5134557580"
+      }
+    }
+  },
+  {
+    "index": 33,
+    "function": "TradeExecute",
+    "from": "0x31E085Afd48a1d6e51Cc193153d625e8f0514C7F",
+    "args": {
+      "sender": {
+        "type": "address",
+        "value": "0x65bF64Ff5f51272f729BDcD7AcFB00677ced86Cd"
+      },
+      "src": {
+        "type": "address",
+        "value": "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE"
+      },
+      "srcAmount": {
+        "type": "uint256",
+        "value": "5637623762376237623786"
+      },
+      "destToken": {
+        "type": "address",
+        "value": "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599"
+      },
+      "destAmount": {
+        "type": "uint256",
+        "value": "5134557580"
+      },
+      "destAddress": {
+        "type": "address",
+        "value": "0x65bF64Ff5f51272f729BDcD7AcFB00677ced86Cd"
+      },
+      "useInternalInventory": {
+        "type": "bool",
+        "value": false
+      }
+    }
+  },
+  {
+    "index": 34,
+    "function": "Transfer",
+    "from": "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
+    "args": {
+      "from": {
+        "type": "address",
+        "value": "0x65bF64Ff5f51272f729BDcD7AcFB00677ced86Cd"
+      },
+      "to": {
+        "type": "address",
+        "value": "0x8B3d70d628Ebd30D4A2ea82DB95bA2e906c71633"
+      },
+      "value": {
+        "type": "uint256",
+        "value": "5134557580"
+      }
+    }
+  },
+  {
+    "index": 35,
+    "function": "KyberTrade",
+    "from": "0x65bF64Ff5f51272f729BDcD7AcFB00677ced86Cd",
+    "args": {
+      "trader": {
+        "type": "address",
+        "value": "0xb017C9936F9271dAFf23d4c9876651442958A80F"
+      },
+      "src": {
+        "type": "address",
+        "value": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
+      },
+      "dest": {
+        "type": "address",
+        "value": "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599"
+      },
+      "srcAmount": {
+        "type": "uint256",
+        "value": "5637623762376237623786"
+      },
+      "dstAmount": {
+        "type": "uint256",
+        "value": "5134557580"
+      },
+      "destAddress": {
+        "type": "address",
+        "value": "0x8B3d70d628Ebd30D4A2ea82DB95bA2e906c71633"
+      },
+      "ethWeiValue": {
+        "type": "uint256",
+        "value": "5637623762376237623786"
+      },
+      "reserve1": {
+        "type": "address",
+        "value": "0x57f8160e1c59D16C01BbE181fD94db4E56b60495"
+      },
+      "reserve2": {
+        "type": "address",
+        "value": "0x31E085Afd48a1d6e51Cc193153d625e8f0514C7F"
+      },
+      "hint": {
+        "type": "bytes",
+        "value": "0x"
+      }
+    }
+  },
+  {
+    "index": 36,
+    "function": "ExecuteTrade",
+    "from": "0x818E6FECD516Ecc3849DAf6845e3EC868087B755",
+    "args": {
+      "trader": {
+        "type": "address",
+        "value": "0xb017C9936F9271dAFf23d4c9876651442958A80F"
+      },
+      "src": {
+        "type": "address",
+        "value": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
+      },
+      "dest": {
+        "type": "address",
+        "value": "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599"
+      },
+      "actualSrcAmount": {
+        "type": "uint256",
+        "value": "5637623762376237623786"
+      },
+      "actualDestAmount": {
+        "type": "uint256",
+        "value": "5134557580"
+      }
+    }
+  },
+  {
+    "index": 37,
+    "function": "Borrow",
+    "from": "0x77f973FCaF871459aa58cd81881Ce453759281bC",
+    "args": {
+      "borrower": {
+        "type": "address",
+        "value": "0xb0200B0677dD825bb32B93d055eBb9dc3521db9D"
+      },
+      "borrowAmount": {
+        "type": "uint256",
+        "value": "4698019801980198019822"
+      },
+      "interestRate": {
+        "type": "uint256",
+        "value": "100000000000000000000"
+      },
+      "collateralTokenAddress": {
+        "type": "address",
+        "value": "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599"
+      },
+      "tradeTokenToFillAddress": {
+        "type": "address",
+        "value": "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599"
+      },
+      "withdrawOnOpen": {
+        "type": "bool",
+        "value": false
+      }
+    }
+  },
+  {
+    "index": 38,
+    "function": "Transfer",
+    "from": "0xb0200B0677dD825bb32B93d055eBb9dc3521db9D",
+    "args": {
+      "from": {
+        "type": "address",
+        "value": "0x0000000000000000000000000000000000000000"
+      },
+      "to": {
+        "type": "address",
+        "value": "0x148426fDC4C8a51b96b4BEd827907b5FA6491aD0"
+      },
+      "value": {
+        "type": "uint256",
+        "value": "9852209840000000"
+      }
+    }
+  },
+  {
+    "index": 39,
+    "function": "Mint",
+    "from": "0xb0200B0677dD825bb32B93d055eBb9dc3521db9D",
+    "args": {
+      "minter": {
+        "type": "address",
+        "value": "0x148426fDC4C8a51b96b4BEd827907b5FA6491aD0"
+      },
+      "depositAddress": {
+        "type": "address",
+        "value": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
+      },
+      "depositAmount": {
+        "type": "uint256",
+        "value": "1300000000000000000000"
+      },
+      "tokenAmount": {
+        "type": "uint256",
+        "value": "9852209840000000"
+      },
+      "price": {
+        "type": "uint256",
+        "value": "1000000000000000000000"
+      }
+    }
+  },
+  {
+    "index": 40,
+    "function": "Transfer",
+    "from": "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
+    "args": {
+      "from": {
+        "type": "address",
+        "value": "0x4f4e0f2cb72E718fC0433222768c57e823162152"
+      },
+      "to": {
+        "type": "address",
+        "value": "0x4d2f5cFbA55AE412221182D8475bC85799A5644b"
+      },
+      "value": {
+        "type": "uint256",
+        "value": "11200000000"
+      }
+    }
+  },
+  {
+    "index": 41,
+    "function": "EthPurchase",
+    "from": "0x4d2f5cFbA55AE412221182D8475bC85799A5644b",
+    "args": {
+      "buyer": {
+        "type": "address",
+        "value": "0x4f4e0f2cb72E718fC0433222768c57e823162152"
+      },
+      "tokens_sold": {
+        "type": "uint256",
+        "value": "11200000000"
+      },
+      "eth_bought": {
+        "type": "uint256",
+        "value": "6871412738870224322944"
+      }
+    }
+  },
+  {
+    "index": 42,
+    "function": "Deposit",
+    "from": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+    "args": {
+      "dst": {
+        "type": "address",
+        "value": "0x4f4e0f2cb72E718fC0433222768c57e823162152"
+      },
+      "wad": {
+        "type": "uint256",
+        "value": "10000000000000010000000"
+      }
+    }
+  },
+  {
+    "index": 43,
+    "function": "Transfer",
+    "from": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+    "args": {
+      "src": {
+        "type": "address",
+        "value": "0x4f4e0f2cb72E718fC0433222768c57e823162152"
+      },
+      "dst": {
+        "type": "address",
+        "value": "0x0de0dD63d9fB65450339ef27577d4f39d095EB85"
+      },
+      "wad": {
+        "type": "uint256",
+        "value": "10000000000000010000000"
+      }
+    }
+  },
+  {
+    "index": 44,
+    "function": "LogCall",
+    "from": "0x1E0447b19BB6EcFdAe1e4AE1694b0C3659614e4e",
+    "args": {
+      "accountOwner": {
+        "type": "address",
+        "value": "0x0de0dD63d9fB65450339ef27577d4f39d095EB85"
+      },
+      "accountNumber": {
+        "type": "uint256",
+        "value": "0"
+      },
+      "callee": {
+        "type": "address",
+        "value": "0x4f4e0f2cb72E718fC0433222768c57e823162152"
+      }
+    }
+  },
+  {
+    "index": 45,
+    "function": "Transfer",
+    "from": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+    "args": {
+      "src": {
+        "type": "address",
+        "value": "0x0de0dD63d9fB65450339ef27577d4f39d095EB85"
+      },
+      "dst": {
+        "type": "address",
+        "value": "0x1E0447b19BB6EcFdAe1e4AE1694b0C3659614e4e"
+      },
+      "wad": {
+        "type": "uint256",
+        "value": "10000000000000010000000"
+      }
+    }
+  },
+  {
+    "index": 46,
+    "function": "LogDeposit",
+    "from": "0x1E0447b19BB6EcFdAe1e4AE1694b0C3659614e4e",
+    "args": {
+      "accountOwner": {
+        "type": "address",
+        "value": "0x0de0dD63d9fB65450339ef27577d4f39d095EB85"
+      },
+      "accountNumber": {
+        "type": "uint256",
+        "value": "0"
+      },
+      "market": {
+        "type": "uint256",
+        "value": "0"
+      },
+      "update": {
+        "type": "tuple",
+        "value": "true,10000000000000010000000,true,9992005"
+      },
+      "from": {
+        "type": "address",
+        "value": "0x0de0dD63d9fB65450339ef27577d4f39d095EB85"
+      }
+    }
+  }
+]

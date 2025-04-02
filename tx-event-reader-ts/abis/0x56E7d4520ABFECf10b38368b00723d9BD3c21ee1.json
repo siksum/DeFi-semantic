@@ -1,0 +1,1487 @@
+[
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "market",
+        "type": "uint256"
+      },
+      {
+        "components": [
+          {
+            "name": "borrow",
+            "type": "uint96"
+          },
+          {
+            "name": "supply",
+            "type": "uint96"
+          },
+          {
+            "name": "lastUpdate",
+            "type": "uint32"
+          }
+        ],
+        "indexed": false,
+        "name": "index",
+        "type": "tuple"
+      }
+    ],
+    "name": "LogIndexUpdate",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "name": "sender",
+        "type": "address"
+      }
+    ],
+    "name": "LogOperation",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "accountOwner",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "accountNumber",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "market",
+        "type": "uint256"
+      },
+      {
+        "components": [
+          {
+            "components": [
+              {
+                "name": "sign",
+                "type": "bool"
+              },
+              {
+                "name": "value",
+                "type": "uint256"
+              }
+            ],
+            "name": "deltaWei",
+            "type": "tuple"
+          },
+          {
+            "components": [
+              {
+                "name": "sign",
+                "type": "bool"
+              },
+              {
+                "name": "value",
+                "type": "uint128"
+              }
+            ],
+            "name": "newPar",
+            "type": "tuple"
+          }
+        ],
+        "indexed": false,
+        "name": "update",
+        "type": "tuple"
+      },
+      {
+        "indexed": false,
+        "name": "from",
+        "type": "address"
+      }
+    ],
+    "name": "LogDeposit",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "accountOwner",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "accountNumber",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "market",
+        "type": "uint256"
+      },
+      {
+        "components": [
+          {
+            "components": [
+              {
+                "name": "sign",
+                "type": "bool"
+              },
+              {
+                "name": "value",
+                "type": "uint256"
+              }
+            ],
+            "name": "deltaWei",
+            "type": "tuple"
+          },
+          {
+            "components": [
+              {
+                "name": "sign",
+                "type": "bool"
+              },
+              {
+                "name": "value",
+                "type": "uint128"
+              }
+            ],
+            "name": "newPar",
+            "type": "tuple"
+          }
+        ],
+        "indexed": false,
+        "name": "update",
+        "type": "tuple"
+      },
+      {
+        "indexed": false,
+        "name": "to",
+        "type": "address"
+      }
+    ],
+    "name": "LogWithdraw",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "accountOneOwner",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "accountOneNumber",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "accountTwoOwner",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "accountTwoNumber",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "market",
+        "type": "uint256"
+      },
+      {
+        "components": [
+          {
+            "components": [
+              {
+                "name": "sign",
+                "type": "bool"
+              },
+              {
+                "name": "value",
+                "type": "uint256"
+              }
+            ],
+            "name": "deltaWei",
+            "type": "tuple"
+          },
+          {
+            "components": [
+              {
+                "name": "sign",
+                "type": "bool"
+              },
+              {
+                "name": "value",
+                "type": "uint128"
+              }
+            ],
+            "name": "newPar",
+            "type": "tuple"
+          }
+        ],
+        "indexed": false,
+        "name": "updateOne",
+        "type": "tuple"
+      },
+      {
+        "components": [
+          {
+            "components": [
+              {
+                "name": "sign",
+                "type": "bool"
+              },
+              {
+                "name": "value",
+                "type": "uint256"
+              }
+            ],
+            "name": "deltaWei",
+            "type": "tuple"
+          },
+          {
+            "components": [
+              {
+                "name": "sign",
+                "type": "bool"
+              },
+              {
+                "name": "value",
+                "type": "uint128"
+              }
+            ],
+            "name": "newPar",
+            "type": "tuple"
+          }
+        ],
+        "indexed": false,
+        "name": "updateTwo",
+        "type": "tuple"
+      }
+    ],
+    "name": "LogTransfer",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "accountOwner",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "accountNumber",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "takerMarket",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "makerMarket",
+        "type": "uint256"
+      },
+      {
+        "components": [
+          {
+            "components": [
+              {
+                "name": "sign",
+                "type": "bool"
+              },
+              {
+                "name": "value",
+                "type": "uint256"
+              }
+            ],
+            "name": "deltaWei",
+            "type": "tuple"
+          },
+          {
+            "components": [
+              {
+                "name": "sign",
+                "type": "bool"
+              },
+              {
+                "name": "value",
+                "type": "uint128"
+              }
+            ],
+            "name": "newPar",
+            "type": "tuple"
+          }
+        ],
+        "indexed": false,
+        "name": "takerUpdate",
+        "type": "tuple"
+      },
+      {
+        "components": [
+          {
+            "components": [
+              {
+                "name": "sign",
+                "type": "bool"
+              },
+              {
+                "name": "value",
+                "type": "uint256"
+              }
+            ],
+            "name": "deltaWei",
+            "type": "tuple"
+          },
+          {
+            "components": [
+              {
+                "name": "sign",
+                "type": "bool"
+              },
+              {
+                "name": "value",
+                "type": "uint128"
+              }
+            ],
+            "name": "newPar",
+            "type": "tuple"
+          }
+        ],
+        "indexed": false,
+        "name": "makerUpdate",
+        "type": "tuple"
+      },
+      {
+        "indexed": false,
+        "name": "exchangeWrapper",
+        "type": "address"
+      }
+    ],
+    "name": "LogBuy",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "accountOwner",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "accountNumber",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "takerMarket",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "makerMarket",
+        "type": "uint256"
+      },
+      {
+        "components": [
+          {
+            "components": [
+              {
+                "name": "sign",
+                "type": "bool"
+              },
+              {
+                "name": "value",
+                "type": "uint256"
+              }
+            ],
+            "name": "deltaWei",
+            "type": "tuple"
+          },
+          {
+            "components": [
+              {
+                "name": "sign",
+                "type": "bool"
+              },
+              {
+                "name": "value",
+                "type": "uint128"
+              }
+            ],
+            "name": "newPar",
+            "type": "tuple"
+          }
+        ],
+        "indexed": false,
+        "name": "takerUpdate",
+        "type": "tuple"
+      },
+      {
+        "components": [
+          {
+            "components": [
+              {
+                "name": "sign",
+                "type": "bool"
+              },
+              {
+                "name": "value",
+                "type": "uint256"
+              }
+            ],
+            "name": "deltaWei",
+            "type": "tuple"
+          },
+          {
+            "components": [
+              {
+                "name": "sign",
+                "type": "bool"
+              },
+              {
+                "name": "value",
+                "type": "uint128"
+              }
+            ],
+            "name": "newPar",
+            "type": "tuple"
+          }
+        ],
+        "indexed": false,
+        "name": "makerUpdate",
+        "type": "tuple"
+      },
+      {
+        "indexed": false,
+        "name": "exchangeWrapper",
+        "type": "address"
+      }
+    ],
+    "name": "LogSell",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "takerAccountOwner",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "takerAccountNumber",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "makerAccountOwner",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "makerAccountNumber",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "inputMarket",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "outputMarket",
+        "type": "uint256"
+      },
+      {
+        "components": [
+          {
+            "components": [
+              {
+                "name": "sign",
+                "type": "bool"
+              },
+              {
+                "name": "value",
+                "type": "uint256"
+              }
+            ],
+            "name": "deltaWei",
+            "type": "tuple"
+          },
+          {
+            "components": [
+              {
+                "name": "sign",
+                "type": "bool"
+              },
+              {
+                "name": "value",
+                "type": "uint128"
+              }
+            ],
+            "name": "newPar",
+            "type": "tuple"
+          }
+        ],
+        "indexed": false,
+        "name": "takerInputUpdate",
+        "type": "tuple"
+      },
+      {
+        "components": [
+          {
+            "components": [
+              {
+                "name": "sign",
+                "type": "bool"
+              },
+              {
+                "name": "value",
+                "type": "uint256"
+              }
+            ],
+            "name": "deltaWei",
+            "type": "tuple"
+          },
+          {
+            "components": [
+              {
+                "name": "sign",
+                "type": "bool"
+              },
+              {
+                "name": "value",
+                "type": "uint128"
+              }
+            ],
+            "name": "newPar",
+            "type": "tuple"
+          }
+        ],
+        "indexed": false,
+        "name": "takerOutputUpdate",
+        "type": "tuple"
+      },
+      {
+        "components": [
+          {
+            "components": [
+              {
+                "name": "sign",
+                "type": "bool"
+              },
+              {
+                "name": "value",
+                "type": "uint256"
+              }
+            ],
+            "name": "deltaWei",
+            "type": "tuple"
+          },
+          {
+            "components": [
+              {
+                "name": "sign",
+                "type": "bool"
+              },
+              {
+                "name": "value",
+                "type": "uint128"
+              }
+            ],
+            "name": "newPar",
+            "type": "tuple"
+          }
+        ],
+        "indexed": false,
+        "name": "makerInputUpdate",
+        "type": "tuple"
+      },
+      {
+        "components": [
+          {
+            "components": [
+              {
+                "name": "sign",
+                "type": "bool"
+              },
+              {
+                "name": "value",
+                "type": "uint256"
+              }
+            ],
+            "name": "deltaWei",
+            "type": "tuple"
+          },
+          {
+            "components": [
+              {
+                "name": "sign",
+                "type": "bool"
+              },
+              {
+                "name": "value",
+                "type": "uint128"
+              }
+            ],
+            "name": "newPar",
+            "type": "tuple"
+          }
+        ],
+        "indexed": false,
+        "name": "makerOutputUpdate",
+        "type": "tuple"
+      },
+      {
+        "indexed": false,
+        "name": "autoTrader",
+        "type": "address"
+      }
+    ],
+    "name": "LogTrade",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "accountOwner",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "accountNumber",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "callee",
+        "type": "address"
+      }
+    ],
+    "name": "LogCall",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "solidAccountOwner",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "solidAccountNumber",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "liquidAccountOwner",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "liquidAccountNumber",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "heldMarket",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "owedMarket",
+        "type": "uint256"
+      },
+      {
+        "components": [
+          {
+            "components": [
+              {
+                "name": "sign",
+                "type": "bool"
+              },
+              {
+                "name": "value",
+                "type": "uint256"
+              }
+            ],
+            "name": "deltaWei",
+            "type": "tuple"
+          },
+          {
+            "components": [
+              {
+                "name": "sign",
+                "type": "bool"
+              },
+              {
+                "name": "value",
+                "type": "uint128"
+              }
+            ],
+            "name": "newPar",
+            "type": "tuple"
+          }
+        ],
+        "indexed": false,
+        "name": "solidHeldUpdate",
+        "type": "tuple"
+      },
+      {
+        "components": [
+          {
+            "components": [
+              {
+                "name": "sign",
+                "type": "bool"
+              },
+              {
+                "name": "value",
+                "type": "uint256"
+              }
+            ],
+            "name": "deltaWei",
+            "type": "tuple"
+          },
+          {
+            "components": [
+              {
+                "name": "sign",
+                "type": "bool"
+              },
+              {
+                "name": "value",
+                "type": "uint128"
+              }
+            ],
+            "name": "newPar",
+            "type": "tuple"
+          }
+        ],
+        "indexed": false,
+        "name": "solidOwedUpdate",
+        "type": "tuple"
+      },
+      {
+        "components": [
+          {
+            "components": [
+              {
+                "name": "sign",
+                "type": "bool"
+              },
+              {
+                "name": "value",
+                "type": "uint256"
+              }
+            ],
+            "name": "deltaWei",
+            "type": "tuple"
+          },
+          {
+            "components": [
+              {
+                "name": "sign",
+                "type": "bool"
+              },
+              {
+                "name": "value",
+                "type": "uint128"
+              }
+            ],
+            "name": "newPar",
+            "type": "tuple"
+          }
+        ],
+        "indexed": false,
+        "name": "liquidHeldUpdate",
+        "type": "tuple"
+      },
+      {
+        "components": [
+          {
+            "components": [
+              {
+                "name": "sign",
+                "type": "bool"
+              },
+              {
+                "name": "value",
+                "type": "uint256"
+              }
+            ],
+            "name": "deltaWei",
+            "type": "tuple"
+          },
+          {
+            "components": [
+              {
+                "name": "sign",
+                "type": "bool"
+              },
+              {
+                "name": "value",
+                "type": "uint128"
+              }
+            ],
+            "name": "newPar",
+            "type": "tuple"
+          }
+        ],
+        "indexed": false,
+        "name": "liquidOwedUpdate",
+        "type": "tuple"
+      }
+    ],
+    "name": "LogLiquidate",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "solidAccountOwner",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "solidAccountNumber",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "vaporAccountOwner",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "vaporAccountNumber",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "heldMarket",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "owedMarket",
+        "type": "uint256"
+      },
+      {
+        "components": [
+          {
+            "components": [
+              {
+                "name": "sign",
+                "type": "bool"
+              },
+              {
+                "name": "value",
+                "type": "uint256"
+              }
+            ],
+            "name": "deltaWei",
+            "type": "tuple"
+          },
+          {
+            "components": [
+              {
+                "name": "sign",
+                "type": "bool"
+              },
+              {
+                "name": "value",
+                "type": "uint128"
+              }
+            ],
+            "name": "newPar",
+            "type": "tuple"
+          }
+        ],
+        "indexed": false,
+        "name": "solidHeldUpdate",
+        "type": "tuple"
+      },
+      {
+        "components": [
+          {
+            "components": [
+              {
+                "name": "sign",
+                "type": "bool"
+              },
+              {
+                "name": "value",
+                "type": "uint256"
+              }
+            ],
+            "name": "deltaWei",
+            "type": "tuple"
+          },
+          {
+            "components": [
+              {
+                "name": "sign",
+                "type": "bool"
+              },
+              {
+                "name": "value",
+                "type": "uint128"
+              }
+            ],
+            "name": "newPar",
+            "type": "tuple"
+          }
+        ],
+        "indexed": false,
+        "name": "solidOwedUpdate",
+        "type": "tuple"
+      },
+      {
+        "components": [
+          {
+            "components": [
+              {
+                "name": "sign",
+                "type": "bool"
+              },
+              {
+                "name": "value",
+                "type": "uint256"
+              }
+            ],
+            "name": "deltaWei",
+            "type": "tuple"
+          },
+          {
+            "components": [
+              {
+                "name": "sign",
+                "type": "bool"
+              },
+              {
+                "name": "value",
+                "type": "uint128"
+              }
+            ],
+            "name": "newPar",
+            "type": "tuple"
+          }
+        ],
+        "indexed": false,
+        "name": "vaporOwedUpdate",
+        "type": "tuple"
+      }
+    ],
+    "name": "LogVaporize",
+    "type": "event"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "inputMarketId",
+        "type": "uint256"
+      },
+      {
+        "name": "outputMarketId",
+        "type": "uint256"
+      },
+      {
+        "components": [
+          {
+            "name": "owner",
+            "type": "address"
+          },
+          {
+            "name": "number",
+            "type": "uint256"
+          }
+        ],
+        "name": "makerAccount",
+        "type": "tuple"
+      },
+      {
+        "components": [
+          {
+            "name": "owner",
+            "type": "address"
+          },
+          {
+            "name": "number",
+            "type": "uint256"
+          }
+        ],
+        "name": "takerAccount",
+        "type": "tuple"
+      },
+      {
+        "components": [
+          {
+            "name": "sign",
+            "type": "bool"
+          },
+          {
+            "name": "value",
+            "type": "uint128"
+          }
+        ],
+        "name": "oldInputPar",
+        "type": "tuple"
+      },
+      {
+        "components": [
+          {
+            "name": "sign",
+            "type": "bool"
+          },
+          {
+            "name": "value",
+            "type": "uint128"
+          }
+        ],
+        "name": "newInputPar",
+        "type": "tuple"
+      },
+      {
+        "components": [
+          {
+            "name": "sign",
+            "type": "bool"
+          },
+          {
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "inputWei",
+        "type": "tuple"
+      },
+      {
+        "name": "data",
+        "type": "bytes"
+      }
+    ],
+    "name": "getTradeCost",
+    "outputs": [
+      {
+        "components": [
+          {
+            "name": "sign",
+            "type": "bool"
+          },
+          {
+            "name": "denomination",
+            "type": "uint8"
+          },
+          {
+            "name": "ref",
+            "type": "uint8"
+          },
+          {
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "sender",
+        "type": "address"
+      },
+      {
+        "components": [
+          {
+            "name": "owner",
+            "type": "address"
+          },
+          {
+            "name": "number",
+            "type": "uint256"
+          }
+        ],
+        "name": "accountInfo",
+        "type": "tuple"
+      },
+      {
+        "name": "data",
+        "type": "bytes"
+      }
+    ],
+    "name": "callFunction",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "name",
+    "outputs": [
+      {
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "spender",
+        "type": "address"
+      },
+      {
+        "name": "value",
+        "type": "uint256"
+      }
+    ],
+    "name": "approve",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "totalSupply",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "from",
+        "type": "address"
+      },
+      {
+        "name": "to",
+        "type": "address"
+      },
+      {
+        "name": "value",
+        "type": "uint256"
+      }
+    ],
+    "name": "transferFrom",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "decimals",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint8"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "who",
+        "type": "address"
+      }
+    ],
+    "name": "balanceOf",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "symbol",
+    "outputs": [
+      {
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "to",
+        "type": "address"
+      },
+      {
+        "name": "value",
+        "type": "uint256"
+      }
+    ],
+    "name": "transfer",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "owner",
+        "type": "address"
+      },
+      {
+        "name": "spender",
+        "type": "address"
+      }
+    ],
+    "name": "allowance",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "from",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "to",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "value",
+        "type": "uint256"
+      }
+    ],
+    "name": "Transfer",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "owner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "spender",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "value",
+        "type": "uint256"
+      }
+    ],
+    "name": "Approval",
+    "type": "event"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "makerToken",
+        "type": "address"
+      },
+      {
+        "name": "takerToken",
+        "type": "address"
+      },
+      {
+        "name": "desiredMakerToken",
+        "type": "uint256"
+      },
+      {
+        "name": "orderData",
+        "type": "bytes"
+      }
+    ],
+    "name": "getExchangeCost",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "tradeOriginator",
+        "type": "address"
+      },
+      {
+        "name": "receiver",
+        "type": "address"
+      },
+      {
+        "name": "makerToken",
+        "type": "address"
+      },
+      {
+        "name": "takerToken",
+        "type": "address"
+      },
+      {
+        "name": "requestedFillAmount",
+        "type": "uint256"
+      },
+      {
+        "name": "orderData",
+        "type": "bytes"
+      }
+    ],
+    "name": "exchange",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "name": "borrowWei",
+        "type": "uint256"
+      },
+      {
+        "name": "supplyWei",
+        "type": "uint256"
+      }
+    ],
+    "name": "getInterestRate",
+    "outputs": [
+      {
+        "components": [
+          {
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address"
+      }
+    ],
+    "name": "getPrice",
+    "outputs": [
+      {
+        "components": [
+          {
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "ONE_DOLLAR",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  }
+]

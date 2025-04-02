@@ -8,12 +8,14 @@ import { getTokenMetadata } from "./utils/getTokenMetadata";
 import solc from "solc";
 
 config();
+const ABI_CACHE_DIR = path.join(__dirname, "./abis");
 
 const provider = new ethers.AlchemyProvider("mainnet", process.env.ALCHEMY_API_KEY);
 const logFilePath = path.join(
   __dirname,
   "logs/0xb5c8bd9430b6cc87a0e2fe110ece6bf527fa4f170a4bc8cd032f768fc5219838.json"
 );
+const decodedLogOutputPath = path.join(__dirname, "decodedLogs.json");
 const addressClassificationMap: Record<string, ContractClassification> = {};
 const tokenMetadataCache: Record<string, { symbol: string; decimals: number }> = {};
 
@@ -135,7 +137,7 @@ async function fetchAbiFromEtherscan(address: string): Promise<any[] | null> {
 }
 
 async function decodeLogs(logs: ethers.Log[]) {
-  const valueToTokenMap: Record<string, string> = {};
+  const decodedLogList: any[] = [];
 
   for (const log of logs) {
     const info = addressClassificationMap[log.address.toLowerCase()];
@@ -144,6 +146,7 @@ async function decodeLogs(logs: ethers.Log[]) {
 
     if (!abi || abi.length === 0) {
       abi = await fetchAbiFromEtherscan(abiAddress);
+      fs.writeFileSync(path.join(ABI_CACHE_DIR, `${abiAddress}.json`), JSON.stringify(abi, null, 2));
       if (!abi || abi.length === 0) {
         console.warn(`Contract ${abiAddress} has bytecode but no verified ABI. Manual ABI recovery not implemented.`);
         continue;
@@ -159,107 +162,32 @@ async function decodeLogs(logs: ethers.Log[]) {
         continue;
       }
 
-      console.log(`\n Event Index: ${log.index}`);
-      console.log(`[${decoded.name}] from ${log.address}`);
+      const jsonLog: any = {
+        index: log.index,
+        function: decoded.name,
+        from: log.address,
+        args: {},
+      };
 
-      for (const [i, input] of decoded.fragment.inputs.entries()) {
-        const name = input.name || `arg${i}`;
+      for (let i = 0; i < decoded.fragment.inputs.length; i++) {
+        const input = decoded.fragment.inputs[i];
         const value = decoded.args[i];
-        const type = input.type;
-        const nameLower = name.toLowerCase();
-
-        let displayValue = value;
-
-        if (type === "address") {
-          displayValue = ethers.getAddress(value);
-        } else if (
-          type.startsWith("uint") &&
-          (nameLower.includes("amount") ||
-            nameLower.includes("value") ||
-            nameLower.includes("wad") ||
-            nameLower.includes("fee") ||
-            nameLower.includes("token") ||
-            nameLower.includes("price") ||
-            nameLower.includes("bought") ||
-            nameLower.includes("sold") ||
-            nameLower.includes("rate") ||
-            nameLower.includes("borrow"))
-        ) {
-          let tokenMetadata = { symbol: "?", decimals: 18 };
-          let candidateAddresses: string[] = [];
-
-          for (const [j, arg] of decoded.args.entries()) {
-            if (ethers.isAddress(arg)) candidateAddresses.push(arg);
-          }
-
-          candidateAddresses.push(log.address);
-
-          for (const addr of candidateAddresses) {
-            if (tokenMetadataCache[addr]) {
-              tokenMetadata = tokenMetadataCache[addr];
-              break;
-            }
-            const meta = await getTokenMetadata(addr, provider);
-            if (meta.symbol !== "?") {
-              tokenMetadata = meta;
-              tokenMetadataCache[addr] = meta;
-              break;
-            }
-          }
-
-          const rawValueStr = value.toString();
-
-          if (valueToTokenMap[rawValueStr]) {
-            const reused = tokenMetadataCache[valueToTokenMap[rawValueStr]];
-            if (reused) tokenMetadata = reused;
-          } else {
-            for (const addr of candidateAddresses) {
-              if (tokenMetadataCache[addr]) {
-                valueToTokenMap[rawValueStr] = addr;
-                break;
-              }
-            }
-          }
-
-          let symbol = tokenMetadata.symbol;
-          let decimals = tokenMetadata.decimals;
-
-          const isCToken = symbol.startsWith("c");
-          const isUnderlyingAmount =
-            nameLower.includes("mintamount") ||
-            nameLower.includes("borrowamount") ||
-            nameLower.includes("repayamount");
-
-          if (isCToken && isUnderlyingAmount) {
-            const underlyingSymbol = symbol.slice(1);
-            const underlyingEntry = Object.entries(tokenMetadataCache).find(
-              ([_, meta]) => meta.symbol === symbol
-            );
-            if (underlyingEntry) {
-              symbol = underlyingSymbol;
-              decimals = underlyingEntry[1].decimals;
-            } else {
-              symbol = underlyingSymbol;
-              decimals = 18;
-            }
-          }
-
-          const formattedNum = parseFloat(ethers.formatUnits(value, decimals));
-          const formatted = isNaN(formattedNum)
-            ? "0"
-            : formattedNum.toLocaleString(undefined, {
-                maximumFractionDigits: 6,
-              });
-
-          displayValue = `${value.toString()} (${formatted} ${symbol})`;
-        }
-
-        console.log(`  - ${name} (${type}): ${displayValue}`);
+        jsonLog.args[input.name || `arg${i}`] = {
+          type: input.type,
+          value: typeof value === "bigint" || (value && typeof value === 'object' && 'toString' in value)
+            ? value.toString()
+            : value,
+        };
       }
+
+      decodedLogList.push(jsonLog);
     } catch (err) {
       console.warn(`Could not decode log ${log.index} from ${log.address}`);
     }
   }
+
+  fs.writeFileSync(decodedLogOutputPath, JSON.stringify(decodedLogList, null, 2));
+  console.log(`Decoded logs written to ${decodedLogOutputPath}`);
 }
 
 async function main() {

@@ -5,6 +5,7 @@ import { config } from "dotenv";
 import { getAbiWithProxySupport } from "./utils/getAbiWithProxySupport";
 import { ContractClassification, classifyAddress } from "./utils/classifyAddress";
 import { getTokenMetadata } from "./utils/getTokenMetadata";
+import solc from "solc";
 
 config();
 
@@ -56,10 +57,17 @@ async function decodeLogs(logs: ethers.Log[]) {
   for (const log of logs) {
     const info = addressClassificationMap[log.address.toLowerCase()];
     const abiAddress = info?.isProxy && info.implementation ? info.implementation : log.address;
-    const abi = await getAbiWithProxySupport(abiAddress, provider);
-    if (!abi) {
-      console.warn(`ABI not found for ${log.address}`);
-      continue;
+    let abi = await getAbiWithProxySupport(abiAddress, provider);
+
+    if (!abi || abi.length === 0) {
+      const contractCode = await provider.getCode(abiAddress);
+      if (contractCode && contractCode !== "0x") {
+        console.warn(`Contract ${abiAddress} has bytecode but no verified ABI. Manual ABI recovery not implemented.`);
+        continue;
+      } else {
+        console.warn(`Contract code not found for ${abiAddress}`);
+        continue;
+      }
     }
 
     const iface = new ethers.Interface(abi);
@@ -144,12 +152,12 @@ async function decodeLogs(logs: ethers.Log[]) {
 
           if (isCToken && isUnderlyingAmount) {
             const underlyingSymbol = symbol.slice(1);
-            const underlyingEntry = Object.values(tokenMetadataCache).find(
-              (meta) => meta.symbol === symbol
+            const underlyingEntry = Object.entries(tokenMetadataCache).find(
+              ([_, meta]) => meta.symbol === symbol
             );
             if (underlyingEntry) {
               symbol = underlyingSymbol;
-              decimals = underlyingEntry.decimals;
+              decimals = underlyingEntry[1].decimals;
             } else {
               symbol = underlyingSymbol;
               decimals = 18;

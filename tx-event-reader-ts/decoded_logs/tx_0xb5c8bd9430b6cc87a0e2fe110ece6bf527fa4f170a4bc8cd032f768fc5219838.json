@@ -1,0 +1,1266 @@
+{
+  "events": [
+    {
+      "eventIndex": 4,
+      "name": "LogOperation",
+      "address": "dydx",
+      "inputs": [
+        {
+          "name": "sender",
+          "type": "address",
+          "rawValue": "attacker",
+          "displayValue": "attacker"
+        }
+      ]
+    },
+    {
+      "eventIndex": 5,
+      "name": "LogIndexUpdate",
+      "address": "dydx",
+      "inputs": [
+        {
+          "name": "market",
+          "type": "uint256",
+          "rawValue": "0"
+        },
+        {
+          "name": "index",
+          "type": "tuple",
+          "rawValue": "1006697529141321337,1000799953468328409,1581730737"
+        }
+      ]
+    },
+    {
+      "eventIndex": 6,
+      "name": "Transfer",
+      "address": "WETH",
+      "inputs": [
+        {
+          "name": "src",
+          "type": "address",
+          "rawValue": "dydx",
+          "displayValue": "dydx"
+        },
+        {
+          "name": "dst",
+          "type": "address",
+          "rawValue": "attacker contract",
+          "displayValue": "attacker contract"
+        },
+        {
+          "name": "wad",
+          "type": "uint256",
+          "rawValue": "10000000000000000000000",
+          "formattedValue": 10000,
+          "symbol": "WETH",
+          "displayValue": "10,000 WETH"
+        }
+      ]
+    },
+    {
+      "eventIndex": 7,
+      "name": "LogWithdraw",
+      "address": "dydx",
+      "inputs": [
+        {
+          "name": "accountOwner",
+          "type": "address",
+          "rawValue": "attacker",
+          "displayValue": "attacker"
+        },
+        {
+          "name": "accountNumber",
+          "type": "uint256",
+          "rawValue": "0"
+        },
+        {
+          "name": "market",
+          "type": "uint256",
+          "rawValue": "0"
+        },
+        {
+          "name": "update",
+          "type": "tuple",
+          "rawValue": "false,10000000000000000000000,false,9933470293236598077624"
+        },
+        {
+          "name": "to",
+          "type": "address",
+          "rawValue": "attacker contract",
+          "displayValue": "attacker contract"
+        }
+      ]
+    },
+    {
+      "eventIndex": 8,
+      "name": "Withdrawal",
+      "address": "WETH",
+      "inputs": [
+        {
+          "name": "src",
+          "type": "address",
+          "rawValue": "attacker contract",
+          "displayValue": "attacker contract"
+        },
+        {
+          "name": "wad",
+          "type": "uint256",
+          "rawValue": "10000000000000000000000",
+          "formattedValue": 10000,
+          "symbol": "WETH",
+          "displayValue": "10,000 WETH"
+        }
+      ]
+    },
+    {
+      "eventIndex": 9,
+      "name": "MarketEntered",
+      "address": "Compound Comptroller",
+      "inputs": [
+        {
+          "name": "cToken",
+          "type": "address",
+          "rawValue": "Compound cWBTC",
+          "displayValue": "Compound cWBTC"
+        },
+        {
+          "name": "account",
+          "type": "address",
+          "rawValue": "attacker contract",
+          "displayValue": "attacker contract"
+        }
+      ]
+    },
+    {
+      "eventIndex": 10,
+      "name": "MarketEntered",
+      "address": "Compound Comptroller",
+      "inputs": [
+        {
+          "name": "cToken",
+          "type": "address",
+          "rawValue": "Compound cETH",
+          "displayValue": "Compound cETH"
+        },
+        {
+          "name": "account",
+          "type": "address",
+          "rawValue": "attacker contract",
+          "displayValue": "attacker contract"
+        }
+      ]
+    },
+    {
+      "eventIndex": 11,
+      "name": "AccrueInterest",
+      "address": "Compound cETH",
+      "inputs": [
+        {
+          "name": "interestAccumulated",
+          "type": "uint256",
+          "rawValue": "131387170765778"
+        },
+        {
+          "name": "borrowIndex",
+          "type": "uint256",
+          "rawValue": "1020377469233107697",
+          "formattedValue": 10203774692.331078,
+          "symbol": "cETH",
+          "displayValue": "10,203,774,692.331078 cETH"
+        },
+        {
+          "name": "totalBorrows",
+          "type": "uint256",
+          "rawValue": "1688779324980156620402",
+          "formattedValue": 16887793249801.566,
+          "symbol": "cETH",
+          "displayValue": "16,887,793,249,801.566 cETH"
+        }
+      ]
+    },
+    {
+      "eventIndex": 12,
+      "name": "Mint",
+      "address": "Compound cETH",
+      "inputs": [
+        {
+          "name": "minter",
+          "type": "address",
+          "rawValue": "attacker contract",
+          "displayValue": "attacker contract"
+        },
+        {
+          "name": "mintAmount",
+          "type": "uint256",
+          "rawValue": "5500000000000000000000",
+          "formattedValue": 5500,
+          "symbol": "ETH",
+          "displayValue": "5,500 ETH"
+        },
+        {
+          "name": "mintTokens",
+          "type": "uint256",
+          "rawValue": "27484367745507",
+          "formattedValue": 274843.67745507,
+          "symbol": "cETH",
+          "displayValue": "274,843.677455 cETH"
+        }
+      ]
+    },
+    {
+      "eventIndex": 13,
+      "name": "Transfer",
+      "address": "Compound cETH",
+      "inputs": [
+        {
+          "name": "from",
+          "type": "address",
+          "rawValue": "Compound cETH",
+          "displayValue": "Compound cETH"
+        },
+        {
+          "name": "to",
+          "type": "address",
+          "rawValue": "attacker contract",
+          "displayValue": "attacker contract"
+        },
+        {
+          "name": "amount",
+          "type": "uint256",
+          "rawValue": "27484367745507",
+          "formattedValue": 274843.67745507,
+          "symbol": "cETH",
+          "displayValue": "274,843.677455 cETH"
+        }
+      ]
+    },
+    {
+      "eventIndex": 14,
+      "name": "AccrueInterest",
+      "address": "Compound cETH",
+      "inputs": [
+        {
+          "name": "interestAccumulated",
+          "type": "uint256",
+          "rawValue": "0"
+        },
+        {
+          "name": "borrowIndex",
+          "type": "uint256",
+          "rawValue": "1020377469233107697",
+          "formattedValue": 10203774692.331078,
+          "symbol": "cETH",
+          "displayValue": "10,203,774,692.331078 cETH"
+        },
+        {
+          "name": "totalBorrows",
+          "type": "uint256",
+          "rawValue": "1688779324980156620402",
+          "formattedValue": 16887793249801.566,
+          "symbol": "cETH",
+          "displayValue": "16,887,793,249,801.566 cETH"
+        }
+      ]
+    },
+    {
+      "eventIndex": 15,
+      "name": "AccrueInterest",
+      "address": "Compound cWBTC",
+      "inputs": [
+        {
+          "name": "interestAccumulated",
+          "type": "uint256",
+          "rawValue": "2205"
+        },
+        {
+          "name": "borrowIndex",
+          "type": "uint256",
+          "rawValue": "1035227250015402230",
+          "formattedValue": 10352272500.154022,
+          "symbol": "cWBTC",
+          "displayValue": "10,352,272,500.154022 cWBTC"
+        },
+        {
+          "name": "totalBorrows",
+          "type": "uint256",
+          "rawValue": "1965553107",
+          "formattedValue": 19.65553107,
+          "symbol": "cWBTC",
+          "displayValue": "19.655531 cWBTC"
+        }
+      ]
+    },
+    {
+      "eventIndex": 16,
+      "name": "Transfer",
+      "address": "WBTC",
+      "inputs": [
+        {
+          "name": "from",
+          "type": "address",
+          "rawValue": "Compound cWBTC",
+          "displayValue": "Compound cWBTC"
+        },
+        {
+          "name": "to",
+          "type": "address",
+          "rawValue": "attacker contract",
+          "displayValue": "attacker contract"
+        },
+        {
+          "name": "value",
+          "type": "uint256",
+          "rawValue": "11200000000",
+          "formattedValue": 112,
+          "symbol": "cWBTC",
+          "displayValue": "112 cWBTC"
+        }
+      ]
+    },
+    {
+      "eventIndex": 17,
+      "name": "Borrow",
+      "address": "Compound cWBTC",
+      "inputs": [
+        {
+          "name": "borrower",
+          "type": "address",
+          "rawValue": "attacker contract",
+          "displayValue": "attacker contract"
+        },
+        {
+          "name": "borrowAmount",
+          "type": "uint256",
+          "rawValue": "11200000000",
+          "formattedValue": 112,
+          "symbol": "WBTC",
+          "displayValue": "112 WBTC"
+        },
+        {
+          "name": "accountBorrows",
+          "type": "uint256",
+          "rawValue": "11200000000",
+          "formattedValue": 112,
+          "symbol": "cWBTC",
+          "displayValue": "112 cWBTC"
+        },
+        {
+          "name": "totalBorrows",
+          "type": "uint256",
+          "rawValue": "13165553107",
+          "formattedValue": 131.65553107,
+          "symbol": "cWBTC",
+          "displayValue": "131.655531 cWBTC"
+        }
+      ]
+    },
+    {
+      "eventIndex": 18,
+      "name": "Approval",
+      "address": "WBTC",
+      "inputs": [
+        {
+          "name": "owner",
+          "type": "address",
+          "rawValue": "attacker contract",
+          "displayValue": "attacker contract"
+        },
+        {
+          "name": "spender",
+          "type": "address",
+          "rawValue": "Uniswap-WBTC",
+          "displayValue": "Uniswap-WBTC"
+        },
+        {
+          "name": "value",
+          "type": "uint256",
+          "rawValue": "11200000000",
+          "formattedValue": 112,
+          "symbol": "cWBTC",
+          "displayValue": "112 cWBTC"
+        }
+      ]
+    },
+    {
+      "eventIndex": 19,
+      "name": "Deposit",
+      "address": "WETH",
+      "inputs": [
+        {
+          "name": "dst",
+          "type": "address",
+          "rawValue": "bzx Fulcrum",
+          "displayValue": "bzx Fulcrum"
+        },
+        {
+          "name": "wad",
+          "type": "uint256",
+          "rawValue": "1300000000000000000000",
+          "formattedValue": 1300,
+          "symbol": "sETHwBTC5x",
+          "displayValue": "1,300 sETHwBTC5x"
+        }
+      ]
+    },
+    {
+      "eventIndex": 20,
+      "name": "Transfer",
+      "address": "WETH",
+      "inputs": [
+        {
+          "name": "src",
+          "type": "address",
+          "rawValue": "bzx Vault",
+          "displayValue": "bzx Vault"
+        },
+        {
+          "name": "dst",
+          "type": "address",
+          "rawValue": "0xb017C9936F9271dAFf23d4c9876651442958A80F",
+          "displayValue": "0xb017C9936F9271dAFf23d4c9876651442958A80F"
+        },
+        {
+          "name": "wad",
+          "type": "uint256",
+          "rawValue": "91505033541987",
+          "formattedValue": 0.000091505033541987,
+          "symbol": "WETH",
+          "displayValue": "0.000092 WETH"
+        }
+      ]
+    },
+    {
+      "eventIndex": 21,
+      "name": "Transfer",
+      "address": "WETH",
+      "inputs": [
+        {
+          "name": "src",
+          "type": "address",
+          "rawValue": "0xb017C9936F9271dAFf23d4c9876651442958A80F",
+          "displayValue": "0xb017C9936F9271dAFf23d4c9876651442958A80F"
+        },
+        {
+          "name": "dst",
+          "type": "address",
+          "rawValue": "bzx iToken",
+          "displayValue": "bzx iToken"
+        },
+        {
+          "name": "wad",
+          "type": "uint256",
+          "rawValue": "82354530187789",
+          "formattedValue": 0.000082354530187789,
+          "symbol": "iETH",
+          "displayValue": "0.000082 iETH"
+        }
+      ]
+    },
+    {
+      "eventIndex": 22,
+      "name": "Transfer",
+      "address": "WETH",
+      "inputs": [
+        {
+          "name": "src",
+          "type": "address",
+          "rawValue": "bzx iToken",
+          "displayValue": "bzx iToken"
+        },
+        {
+          "name": "dst",
+          "type": "address",
+          "rawValue": "bzx Vault",
+          "displayValue": "bzx Vault"
+        },
+        {
+          "name": "wad",
+          "type": "uint256",
+          "rawValue": "4698019801980198019822",
+          "formattedValue": 4698.019801980198,
+          "symbol": "iETH",
+          "displayValue": "4,698.019802 iETH"
+        }
+      ]
+    },
+    {
+      "eventIndex": 23,
+      "name": "Transfer",
+      "address": "WETH",
+      "inputs": [
+        {
+          "name": "src",
+          "type": "address",
+          "rawValue": "bzx Fulcrum",
+          "displayValue": "bzx Fulcrum"
+        },
+        {
+          "name": "dst",
+          "type": "address",
+          "rawValue": "bzx Vault",
+          "displayValue": "bzx Vault"
+        },
+        {
+          "name": "wad",
+          "type": "uint256",
+          "rawValue": "1300000000000000000000",
+          "formattedValue": 1300,
+          "symbol": "sETHwBTC5x",
+          "displayValue": "1,300 sETHwBTC5x"
+        }
+      ]
+    },
+    {
+      "eventIndex": 24,
+      "name": "Transfer",
+      "address": "WETH",
+      "inputs": [
+        {
+          "name": "src",
+          "type": "address",
+          "rawValue": "bzx Vault",
+          "displayValue": "bzx Vault"
+        },
+        {
+          "name": "dst",
+          "type": "address",
+          "rawValue": "0xb017C9936F9271dAFf23d4c9876651442958A80F",
+          "displayValue": "0xb017C9936F9271dAFf23d4c9876651442958A80F"
+        },
+        {
+          "name": "wad",
+          "type": "uint256",
+          "rawValue": "5637623762376237623786",
+          "formattedValue": 5637.623762376237,
+          "symbol": "WETH",
+          "displayValue": "5,637.623762 WETH"
+        }
+      ]
+    },
+    {
+      "eventIndex": 25,
+      "name": "Transfer",
+      "address": "WETH",
+      "inputs": [
+        {
+          "name": "src",
+          "type": "address",
+          "rawValue": "0xb017C9936F9271dAFf23d4c9876651442958A80F",
+          "displayValue": "0xb017C9936F9271dAFf23d4c9876651442958A80F"
+        },
+        {
+          "name": "dst",
+          "type": "address",
+          "rawValue": "Kyber Network",
+          "displayValue": "Kyber Network"
+        },
+        {
+          "name": "wad",
+          "type": "uint256",
+          "rawValue": "5637623762376237623786",
+          "formattedValue": 5637.623762376237,
+          "symbol": "WETH",
+          "displayValue": "5,637.623762 WETH"
+        }
+      ]
+    },
+    {
+      "eventIndex": 26,
+      "name": "Transfer",
+      "address": "WETH",
+      "inputs": [
+        {
+          "name": "src",
+          "type": "address",
+          "rawValue": "Kyber Network",
+          "displayValue": "Kyber Network"
+        },
+        {
+          "name": "dst",
+          "type": "address",
+          "rawValue": "Kyber Network-WETH reserve",
+          "displayValue": "Kyber Network-WETH reserve"
+        },
+        {
+          "name": "wad",
+          "type": "uint256",
+          "rawValue": "5637623762376237623786",
+          "formattedValue": 5637.623762376237,
+          "symbol": "WETH",
+          "displayValue": "5,637.623762 WETH"
+        }
+      ]
+    },
+    {
+      "eventIndex": 27,
+      "name": "Withdrawal",
+      "address": "WETH",
+      "inputs": [
+        {
+          "name": "src",
+          "type": "address",
+          "rawValue": "Kyber Network-WETH reserve",
+          "displayValue": "Kyber Network-WETH reserve"
+        },
+        {
+          "name": "wad",
+          "type": "uint256",
+          "rawValue": "5637623762376237623786",
+          "formattedValue": 5637.623762376237,
+          "symbol": "WETH",
+          "displayValue": "5,637.623762 WETH"
+        }
+      ]
+    },
+    {
+      "eventIndex": 28,
+      "name": "EtherReceival",
+      "address": "Kyber Network",
+      "inputs": [
+        {
+          "name": "sender",
+          "type": "address",
+          "rawValue": "Kyber Network-WETH reserve",
+          "displayValue": "Kyber Network-WETH reserve"
+        },
+        {
+          "name": "amount",
+          "type": "uint256",
+          "rawValue": "5637623762376237623786",
+          "formattedValue": 5637.623762376237,
+          "symbol": "WETH",
+          "displayValue": "5,637.623762 WETH"
+        }
+      ]
+    },
+    {
+      "eventIndex": 29,
+      "name": "TradeExecute",
+      "address": "Kyber Network-WETH reserve",
+      "inputs": [
+        {
+          "name": "sender",
+          "type": "address",
+          "rawValue": "Kyber Network",
+          "displayValue": "Kyber Network"
+        },
+        {
+          "name": "src",
+          "type": "address",
+          "rawValue": "WETH",
+          "displayValue": "WETH"
+        },
+        {
+          "name": "srcAmount",
+          "type": "uint256",
+          "rawValue": "5637623762376237623786",
+          "formattedValue": 5637.623762376237,
+          "symbol": "WETH",
+          "displayValue": "5,637.623762 WETH"
+        },
+        {
+          "name": "destToken",
+          "type": "address",
+          "rawValue": "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
+          "displayValue": "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE"
+        },
+        {
+          "name": "destAmount",
+          "type": "uint256",
+          "rawValue": "5637623762376237623786",
+          "formattedValue": 5637.623762376237,
+          "symbol": "WETH",
+          "displayValue": "5,637.623762 WETH"
+        },
+        {
+          "name": "destAddress",
+          "type": "address",
+          "rawValue": "Kyber Network",
+          "displayValue": "Kyber Network"
+        }
+      ]
+    },
+    {
+      "eventIndex": 30,
+      "name": "Transfer",
+      "address": "WBTC",
+      "inputs": [
+        {
+          "name": "from",
+          "type": "address",
+          "rawValue": "Uniswap-WBTC",
+          "displayValue": "Uniswap-WBTC"
+        },
+        {
+          "name": "to",
+          "type": "address",
+          "rawValue": "Kyber Network-Uniswap reserve",
+          "displayValue": "Kyber Network-Uniswap reserve"
+        },
+        {
+          "name": "value",
+          "type": "uint256",
+          "rawValue": "5134557581",
+          "formattedValue": 51.34557581,
+          "symbol": "WBTC",
+          "displayValue": "51.345576 WBTC"
+        }
+      ]
+    },
+    {
+      "eventIndex": 31,
+      "name": "TokenPurchase",
+      "address": "Uniswap-WBTC",
+      "inputs": [
+        {
+          "name": "buyer",
+          "type": "address",
+          "rawValue": "Kyber Network-Uniswap reserve",
+          "displayValue": "Kyber Network-Uniswap reserve"
+        },
+        {
+          "name": "eth_sold",
+          "type": "uint256",
+          "rawValue": "5637623762376237623786",
+          "formattedValue": 5637.623762376237,
+          "symbol": "WETH",
+          "displayValue": "5,637.623762 WETH"
+        },
+        {
+          "name": "tokens_bought",
+          "type": "uint256",
+          "rawValue": "5134557581",
+          "formattedValue": 51.34557581,
+          "symbol": "WBTC",
+          "displayValue": "51.345576 WBTC"
+        }
+      ]
+    },
+    {
+      "eventIndex": 32,
+      "name": "Transfer",
+      "address": "WBTC",
+      "inputs": [
+        {
+          "name": "from",
+          "type": "address",
+          "rawValue": "Kyber Network-Uniswap reserve",
+          "displayValue": "Kyber Network-Uniswap reserve"
+        },
+        {
+          "name": "to",
+          "type": "address",
+          "rawValue": "Kyber Network",
+          "displayValue": "Kyber Network"
+        },
+        {
+          "name": "value",
+          "type": "uint256",
+          "rawValue": "5134557580",
+          "formattedValue": 51.3455758,
+          "symbol": "WBTC",
+          "displayValue": "51.345576 WBTC"
+        }
+      ]
+    },
+    {
+      "eventIndex": 33,
+      "name": "TradeExecute",
+      "address": "Kyber Network-Uniswap reserve",
+      "inputs": [
+        {
+          "name": "sender",
+          "type": "address",
+          "rawValue": "Kyber Network",
+          "displayValue": "Kyber Network"
+        },
+        {
+          "name": "src",
+          "type": "address",
+          "rawValue": "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
+          "displayValue": "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE"
+        },
+        {
+          "name": "srcAmount",
+          "type": "uint256",
+          "rawValue": "5637623762376237623786",
+          "formattedValue": 5637.623762376237,
+          "symbol": "WETH",
+          "displayValue": "5,637.623762 WETH"
+        },
+        {
+          "name": "destToken",
+          "type": "address",
+          "rawValue": "WBTC",
+          "displayValue": "WBTC"
+        },
+        {
+          "name": "destAmount",
+          "type": "uint256",
+          "rawValue": "5134557580",
+          "formattedValue": 51.3455758,
+          "symbol": "WBTC",
+          "displayValue": "51.345576 WBTC"
+        },
+        {
+          "name": "destAddress",
+          "type": "address",
+          "rawValue": "Kyber Network",
+          "displayValue": "Kyber Network"
+        },
+        {
+          "name": "useInternalInventory",
+          "type": "bool",
+          "rawValue": "false"
+        }
+      ]
+    },
+    {
+      "eventIndex": 34,
+      "name": "Transfer",
+      "address": "WBTC",
+      "inputs": [
+        {
+          "name": "from",
+          "type": "address",
+          "rawValue": "Kyber Network",
+          "displayValue": "Kyber Network"
+        },
+        {
+          "name": "to",
+          "type": "address",
+          "rawValue": "bzx Vault",
+          "displayValue": "bzx Vault"
+        },
+        {
+          "name": "value",
+          "type": "uint256",
+          "rawValue": "5134557580",
+          "formattedValue": 51.3455758,
+          "symbol": "WBTC",
+          "displayValue": "51.345576 WBTC"
+        }
+      ]
+    },
+    {
+      "eventIndex": 35,
+      "name": "KyberTrade",
+      "address": "Kyber Network",
+      "inputs": [
+        {
+          "name": "trader",
+          "type": "address",
+          "rawValue": "0xb017C9936F9271dAFf23d4c9876651442958A80F",
+          "displayValue": "0xb017C9936F9271dAFf23d4c9876651442958A80F"
+        },
+        {
+          "name": "src",
+          "type": "address",
+          "rawValue": "WETH",
+          "displayValue": "WETH"
+        },
+        {
+          "name": "dest",
+          "type": "address",
+          "rawValue": "WBTC",
+          "displayValue": "WBTC"
+        },
+        {
+          "name": "srcAmount",
+          "type": "uint256",
+          "rawValue": "5637623762376237623786",
+          "formattedValue": 5637.623762376237,
+          "symbol": "WETH",
+          "displayValue": "5,637.623762 WETH"
+        },
+        {
+          "name": "dstAmount",
+          "type": "uint256",
+          "rawValue": "5134557580",
+          "formattedValue": 51.3455758,
+          "symbol": "WBTC",
+          "displayValue": "51.345576 WBTC"
+        },
+        {
+          "name": "destAddress",
+          "type": "address",
+          "rawValue": "bzx Vault",
+          "displayValue": "bzx Vault"
+        },
+        {
+          "name": "ethWeiValue",
+          "type": "uint256",
+          "rawValue": "5637623762376237623786",
+          "formattedValue": 5637.623762376237,
+          "symbol": "WETH",
+          "displayValue": "5,637.623762 WETH"
+        },
+        {
+          "name": "reserve1",
+          "type": "address",
+          "rawValue": "Kyber Network-WETH reserve",
+          "displayValue": "Kyber Network-WETH reserve"
+        },
+        {
+          "name": "reserve2",
+          "type": "address",
+          "rawValue": "Kyber Network-Uniswap reserve",
+          "displayValue": "Kyber Network-Uniswap reserve"
+        },
+        {
+          "name": "hint",
+          "type": "bytes",
+          "rawValue": "0x"
+        }
+      ]
+    },
+    {
+      "eventIndex": 36,
+      "name": "ExecuteTrade",
+      "address": "Kyber Network Proxy",
+      "inputs": [
+        {
+          "name": "trader",
+          "type": "address",
+          "rawValue": "0xb017C9936F9271dAFf23d4c9876651442958A80F",
+          "displayValue": "0xb017C9936F9271dAFf23d4c9876651442958A80F"
+        },
+        {
+          "name": "src",
+          "type": "address",
+          "rawValue": "WETH",
+          "displayValue": "WETH"
+        },
+        {
+          "name": "dest",
+          "type": "address",
+          "rawValue": "WBTC",
+          "displayValue": "WBTC"
+        },
+        {
+          "name": "actualSrcAmount",
+          "type": "uint256",
+          "rawValue": "5637623762376237623786",
+          "formattedValue": 5637.623762376237,
+          "symbol": "WETH",
+          "displayValue": "5,637.623762 WETH"
+        },
+        {
+          "name": "actualDestAmount",
+          "type": "uint256",
+          "rawValue": "5134557580",
+          "formattedValue": 51.3455758,
+          "symbol": "WBTC",
+          "displayValue": "51.345576 WBTC"
+        }
+      ]
+    },
+    {
+      "eventIndex": 37,
+      "name": "Borrow",
+      "address": "bzx iToken",
+      "inputs": [
+        {
+          "name": "borrower",
+          "type": "address",
+          "rawValue": "bzx Fulcrum",
+          "displayValue": "bzx Fulcrum"
+        },
+        {
+          "name": "borrowAmount",
+          "type": "uint256",
+          "rawValue": "4698019801980198019822",
+          "formattedValue": 4698.019801980198,
+          "symbol": "iETH",
+          "displayValue": "4,698.019802 iETH"
+        },
+        {
+          "name": "interestRate",
+          "type": "uint256",
+          "rawValue": "100000000000000000000",
+          "formattedValue": 100,
+          "symbol": "sETHwBTC5x",
+          "displayValue": "100 sETHwBTC5x"
+        },
+        {
+          "name": "collateralTokenAddress",
+          "type": "address",
+          "rawValue": "WBTC",
+          "displayValue": "WBTC"
+        },
+        {
+          "name": "tradeTokenToFillAddress",
+          "type": "address",
+          "rawValue": "WBTC",
+          "displayValue": "WBTC"
+        },
+        {
+          "name": "withdrawOnOpen",
+          "type": "bool",
+          "rawValue": "false"
+        }
+      ]
+    },
+    {
+      "eventIndex": 38,
+      "name": "Transfer",
+      "address": "bzx Fulcrum",
+      "inputs": [
+        {
+          "name": "from",
+          "type": "address",
+          "rawValue": "0x0000000000000000000000000000000000000000",
+          "displayValue": "0x0000000000000000000000000000000000000000"
+        },
+        {
+          "name": "to",
+          "type": "address",
+          "rawValue": "Attacker(EOA)",
+          "displayValue": "Attacker(EOA)"
+        },
+        {
+          "name": "value",
+          "type": "uint256",
+          "rawValue": "9852209840000000",
+          "formattedValue": 0.00985220984,
+          "symbol": "sETHwBTC5x",
+          "displayValue": "0.009852 sETHwBTC5x"
+        }
+      ]
+    },
+    {
+      "eventIndex": 39,
+      "name": "Mint",
+      "address": "bzx Fulcrum",
+      "inputs": [
+        {
+          "name": "minter",
+          "type": "address",
+          "rawValue": "Attacker(EOA)",
+          "displayValue": "Attacker(EOA)"
+        },
+        {
+          "name": "depositAddress",
+          "type": "address",
+          "rawValue": "WETH",
+          "displayValue": "WETH"
+        },
+        {
+          "name": "depositAmount",
+          "type": "uint256",
+          "rawValue": "1300000000000000000000",
+          "formattedValue": 1300,
+          "symbol": "sETHwBTC5x",
+          "displayValue": "1,300 sETHwBTC5x"
+        },
+        {
+          "name": "tokenAmount",
+          "type": "uint256",
+          "rawValue": "9852209840000000",
+          "formattedValue": 0.00985220984,
+          "symbol": "sETHwBTC5x",
+          "displayValue": "0.009852 sETHwBTC5x"
+        },
+        {
+          "name": "price",
+          "type": "uint256",
+          "rawValue": "1000000000000000000000",
+          "formattedValue": 1000,
+          "symbol": "WETH",
+          "displayValue": "1,000 WETH"
+        }
+      ]
+    },
+    {
+      "eventIndex": 40,
+      "name": "Transfer",
+      "address": "WBTC",
+      "inputs": [
+        {
+          "name": "from",
+          "type": "address",
+          "rawValue": "attacker contract",
+          "displayValue": "attacker contract"
+        },
+        {
+          "name": "to",
+          "type": "address",
+          "rawValue": "Uniswap-WBTC",
+          "displayValue": "Uniswap-WBTC"
+        },
+        {
+          "name": "value",
+          "type": "uint256",
+          "rawValue": "11200000000",
+          "formattedValue": 112,
+          "symbol": "cWBTC",
+          "displayValue": "112 cWBTC"
+        }
+      ]
+    },
+    {
+      "eventIndex": 41,
+      "name": "EthPurchase",
+      "address": "Uniswap-WBTC",
+      "inputs": [
+        {
+          "name": "buyer",
+          "type": "address",
+          "rawValue": "attacker contract",
+          "displayValue": "attacker contract"
+        },
+        {
+          "name": "tokens_sold",
+          "type": "uint256",
+          "rawValue": "11200000000",
+          "formattedValue": 112,
+          "symbol": "cWBTC",
+          "displayValue": "112 cWBTC"
+        },
+        {
+          "name": "eth_bought",
+          "type": "uint256",
+          "rawValue": "6871412738870224322944",
+          "formattedValue": 6871.4127388702245,
+          "symbol": "ETH",
+          "displayValue": "6,871.412739 ETH"
+        }
+      ]
+    },
+    {
+      "eventIndex": 42,
+      "name": "Deposit",
+      "address": "WETH",
+      "inputs": [
+        {
+          "name": "dst",
+          "type": "address",
+          "rawValue": "attacker contract",
+          "displayValue": "attacker contract"
+        },
+        {
+          "name": "wad",
+          "type": "uint256",
+          "rawValue": "10000000000000010000000",
+          "formattedValue": 10000.00000000001,
+          "symbol": "WETH",
+          "displayValue": "10,000 WETH"
+        }
+      ]
+    },
+    {
+      "eventIndex": 43,
+      "name": "Transfer",
+      "address": "WETH",
+      "inputs": [
+        {
+          "name": "src",
+          "type": "address",
+          "rawValue": "attacker contract",
+          "displayValue": "attacker contract"
+        },
+        {
+          "name": "dst",
+          "type": "address",
+          "rawValue": "attacker",
+          "displayValue": "attacker"
+        },
+        {
+          "name": "wad",
+          "type": "uint256",
+          "rawValue": "10000000000000010000000",
+          "formattedValue": 10000.00000000001,
+          "symbol": "WETH",
+          "displayValue": "10,000 WETH"
+        }
+      ]
+    },
+    {
+      "eventIndex": 44,
+      "name": "LogCall",
+      "address": "dydx",
+      "inputs": [
+        {
+          "name": "accountOwner",
+          "type": "address",
+          "rawValue": "attacker",
+          "displayValue": "attacker"
+        },
+        {
+          "name": "accountNumber",
+          "type": "uint256",
+          "rawValue": "0"
+        },
+        {
+          "name": "callee",
+          "type": "address",
+          "rawValue": "attacker contract",
+          "displayValue": "attacker contract"
+        }
+      ]
+    },
+    {
+      "eventIndex": 45,
+      "name": "Transfer",
+      "address": "WETH",
+      "inputs": [
+        {
+          "name": "src",
+          "type": "address",
+          "rawValue": "attacker",
+          "displayValue": "attacker"
+        },
+        {
+          "name": "dst",
+          "type": "address",
+          "rawValue": "dydx",
+          "displayValue": "dydx"
+        },
+        {
+          "name": "wad",
+          "type": "uint256",
+          "rawValue": "10000000000000010000000",
+          "formattedValue": 10000.00000000001,
+          "symbol": "WETH",
+          "displayValue": "10,000 WETH"
+        }
+      ]
+    },
+    {
+      "eventIndex": 46,
+      "name": "LogDeposit",
+      "address": "dydx",
+      "inputs": [
+        {
+          "name": "accountOwner",
+          "type": "address",
+          "rawValue": "attacker",
+          "displayValue": "attacker"
+        },
+        {
+          "name": "accountNumber",
+          "type": "uint256",
+          "rawValue": "0"
+        },
+        {
+          "name": "market",
+          "type": "uint256",
+          "rawValue": "0"
+        },
+        {
+          "name": "update",
+          "type": "tuple",
+          "rawValue": "true,10000000000000010000000,true,9992005"
+        },
+        {
+          "name": "from",
+          "type": "address",
+          "rawValue": "attacker",
+          "displayValue": "attacker"
+        }
+      ]
+    }
+  ],
+  "timestamp": "2025-04-07T10:19:07.810Z",
+  "transactionHash": "0xb5c8bd9430b6cc87a0e2fe110ece6bf527fa4f170a4bc8cd032f768fc5219838"
+}

@@ -8,7 +8,7 @@ config(); // .env 파일에서 ALCHEMY_API_KEY 로드
 // provider : 이더리움 네트워크에 연결하는 객체
 const provider = new ethers.AlchemyProvider(
     "mainnet",
-    process.env.ALCHEMY_API_KEY!
+    process.env.ALCHEMY_API_KEY
 );
 
 // 추출하고자 하는 트랜잭션 해시

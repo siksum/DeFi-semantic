@@ -28,22 +28,6 @@ export async function classifyAddress(
     };
   }
 
-  // 2. Check EIP-1967 Proxy Slot
-//   try {
-//     const raw = await provider.getStorage(address, EIP1967_SLOT);
-//     console.log(`raw: ${raw}`);
-//     const implCandidate = "0x" + raw.slice(-40);
-  
-//     if (raw && raw !== "0x" && ethers.isAddress(implCandidate)) {
-//       return {
-//         address,
-//         type: "CA",
-//         isProxy: true,
-//         implementation: ethers.getAddress(implCandidate),
-//       };
-//     }
-//   } catch {}
-
   // 3. Fallback: Etherscan getsourcecode
   try {
     const res = await axios.get(`https://api.etherscan.io/api?module=contract&action=getsourcecode&address=${address}&apikey=${process.env.ETHERSCAN_API_KEY}`);

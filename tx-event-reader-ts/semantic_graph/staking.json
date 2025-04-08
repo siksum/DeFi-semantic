@@ -1,0 +1,90 @@
+{
+    "events":[
+        {
+            "name": "Mint",
+            "protocols": [
+                {
+                    "address_label": ["Compound"],
+                    "transfers": [
+                        {
+                            "src": {
+                                "event_field": "inputs",
+                                "param_name": ["minter"]
+                            },
+                            "dst": {
+                                "event_field": "address"
+                            },
+                            "amount": {
+                                "event_field": "inputs",
+                                "param_name": ["mintAmount"]
+                            }
+                        },
+                        {
+                            "src": {
+                                "event_field": "address"
+                            },
+                            "dst": {
+                                "event_field": "inputs",
+                                "param_name": ["minter"]
+                            },
+                            "amount": {
+                                "event_field": "inputs",
+                                "param_name": ["mintTokens"]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "address_label": ["bzx Fulcrum"],
+                    "transfers": [
+                        {
+                            "src": {
+                                "event_field": "inputs",
+                                "param_name": ["minter"]
+                            },
+                            "dst": {
+                                "event_field": "inputs",
+                                "param_name": ["depositAddress"]
+                            },
+                            "amount": {
+                                "event_field": "inputs",
+                                "param_name": ["depositAmount"]
+                            }
+                        },
+                        {
+                            "src": {
+                                "event_field": "address"
+                            },
+                            "dst": {
+                                "event_field": "inputs",
+                                "param_name": ["minter"]
+                            },
+                            "amount": {
+                                "event_field": "inputs",
+                                "param_name": ["tokenAmount"]
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Deposit",
+            "transfers": [
+                {
+                    "src": {
+                        "event_field": "address"
+                    },
+                    "dst": {
+                        "event_field": "inputs",
+                        "param_name": ["dst"]
+                    },
+                    "amount": {
+                        "event_field": "inputs",
+                        "param_name": ["wad"]
+                    }
+                }
+            ]
+        }
+    ]
+}

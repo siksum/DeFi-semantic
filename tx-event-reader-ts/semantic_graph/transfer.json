@@ -1,0 +1,19 @@
+{
+    "events":[
+        {
+            "name": "Transfer",
+            "src": {
+                "event_field": "inputs",
+                "param_name": ["src", "from"]
+            },
+            "dst": {
+                "event_field": "inputs",
+                "param_name": ["dst", "to"]
+            },
+            "amount": {
+                "event_field": "inputs",
+                "param_name": ["amount", "value", "wad"]
+            }
+        }
+    ]
+}

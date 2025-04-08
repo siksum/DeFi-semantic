@@ -1,0 +1,63 @@
+{
+    "events":[
+        {
+            "name": "Borrow",
+            "protocols": [
+                {
+                    "address_label": ["Compound"],
+                    "transfers": [
+                        {
+                            "src": {
+                                "event_field": "address"
+                            },
+                            "dst": {
+                                "event_field": "inputs",
+                                "param_name": ["borrower"]
+                            },
+                            "amount": {
+                                "event_field": "inputs",
+                                "param_name": ["borrowAmount"]
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": ["TokenPurchase", "EthPurchase"],
+            "protocols": [
+                {
+                    "address_label": ["Uniswap"],
+                    "transfers": [
+                        {
+                            "src": {
+                                "event_field": "address"
+                            },
+                            "dst": {
+                                "event_field": "inputs",
+                                "param_name": ["buyer"]
+                            },
+                            "amount": {
+                                "event_field": "inputs",
+                                "param_name": ["tokens_bought", "eth_bought"]
+                            }
+                        },
+                        {
+                            "src": {
+                                "event_field": "inputs",
+                                "param_name": ["buyer"]
+                            },
+                            "dst": {
+                                "event_field": "address"
+                            },
+                            "amount": {
+                                "event_field": "inputs",
+                                "param_name": ["tokens_sold", "eth_sold"]
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

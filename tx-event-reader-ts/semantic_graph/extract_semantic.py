@@ -50,6 +50,7 @@ def build_transaction_graph(data, semantic_events_list, debug=False):
     address_total_volume = defaultdict(float)
     event_counter = 0
     processed_events = 0
+    contains_weth_address = False  # WETH 주소 필터링용 플래그
     
     for event_counter, event in enumerate(data['events']):
         if "name" not in event:
@@ -61,6 +62,31 @@ def build_transaction_graph(data, semantic_events_list, debug=False):
         event_index = event.get('eventIndex', event_counter)
         event_address = event['address']
         event_inputs = event.get('inputs', [])
+        
+        # 이벤트 주소에 WETH가 포함된 경우만 필터링
+        # if "WETH" in event_address:
+        #     if debug:
+        #         print(f"Found WETH in event address #{event_index}: {event_address}")
+        #     contains_weth_address = True
+        
+        # 입력 필드에서 주소 관련 필드에만 WETH 확인
+        # for input_field in event_inputs:
+        #     input_name = input_field.get('name', '').lower()
+        #     input_type = input_field.get('type', '').lower()
+        #     input_value = input_field.get('displayValue') or input_field.get('rawValue')
+            
+        #     # 주소 관련 필드인지 확인 (name이나 type으로 판단)
+        #     is_address_field = (
+        #         input_type == 'address' or 
+        #         'address' in input_name or 
+        #         input_name in ['src', 'dst', 'from', 'to', 'sender', 'receiver', 'owner', 'spender', 'user', 'minter', 'borrower']
+        #     )
+            
+        #     # 주소 필드이고 값이 WETH인 경우만 필터링
+        #     if is_address_field and input_value == "WETH":
+        #         if debug:
+        #             print(f"Found WETH address in input field #{event_index}: {input_field}")
+        #         contains_weth_address = True
         
         if debug:
             print(f"#{event_index} {event_name}")
@@ -91,7 +117,21 @@ def build_transaction_graph(data, semantic_events_list, debug=False):
                                 }
                                 edges_info.append(edge_info)
                                 # 거래량 추적
-                                amount_value = float(amount.split()[0]) if isinstance(amount, str) and ' ' in amount else float(amount or 0)
+                                amount_value = 0
+                                try:
+                                    if isinstance(amount, str):
+                                        if ' ' in amount:
+                                            # "10000 WETH" 형식인 경우
+                                            amount_value = float(amount.split()[0])
+                                        else:
+                                            # 숫자 문자열만 있는 경우
+                                            amount_value = float(amount)
+                                    elif amount is not None:
+                                        amount_value = float(amount)
+                                except (ValueError, TypeError):
+                                    print(f"Warning: Could not convert amount '{amount}' to float")
+                                    amount_value = 0
+                                
                                 address_total_volume[src] += amount_value
                                 address_total_volume[dst] += amount_value
                                 
@@ -117,7 +157,21 @@ def build_transaction_graph(data, semantic_events_list, debug=False):
                                             }
                                             edges_info.append(edge_info)
                                             # 거래량 추적
-                                            amount_value = float(amount.split()[0]) if isinstance(amount, str) and ' ' in amount else float(amount or 0)
+                                            amount_value = 0
+                                            try:
+                                                if isinstance(amount, str):
+                                                    if ' ' in amount:
+                                                        # "10000 WETH" 형식인 경우
+                                                        amount_value = float(amount.split()[0])
+                                                    else:
+                                                        # 숫자 문자열만 있는 경우
+                                                        amount_value = float(amount)
+                                                elif amount is not None:
+                                                    amount_value = float(amount)
+                                            except (ValueError, TypeError):
+                                                print(f"Warning: Could not convert amount '{amount}' to float")
+                                                amount_value = 0
+                                            
                                             address_total_volume[src] += amount_value
                                             address_total_volume[dst] += amount_value
                                             
@@ -141,7 +195,21 @@ def build_transaction_graph(data, semantic_events_list, debug=False):
                                     }
                                     edges_info.append(edge_info)
                                     # 거래량 추적
-                                    amount_value = float(amount.split()[0]) if isinstance(amount, str) and ' ' in amount else float(amount or 0)
+                                    amount_value = 0
+                                    try:
+                                        if isinstance(amount, str):
+                                            if ' ' in amount:
+                                                # "10000 WETH" 형식인 경우
+                                                amount_value = float(amount.split()[0])
+                                            else:
+                                                # 숫자 문자열만 있는 경우
+                                                amount_value = float(amount)
+                                        elif amount is not None:
+                                            amount_value = float(amount)
+                                    except (ValueError, TypeError):
+                                        print(f"Warning: Could not convert amount '{amount}' to float")
+                                        amount_value = 0
+                                    
                                     address_total_volume[src] += amount_value
                                     address_total_volume[dst] += amount_value
                                     
@@ -208,7 +276,7 @@ def build_transaction_graph(data, semantic_events_list, debug=False):
                     event_index=event_index
                 )
     
-    return G
+    return G, contains_weth_address  # WETH 주소 포함 여부와 함께 그래프 반환
 
 def extract_node_value(event, node_spec):
     """이벤트에서 노드 값을 추출하는 함수"""
@@ -239,6 +307,15 @@ def extract_amount_value(event, amount_spec):
             for input_field in event.get('inputs', []):
                 if input_field.get('name') in param_names:
                     value = input_field.get('formattedValue') or input_field.get('rawValue')
+                    
+                    # CSV 형식 값에서 특정 인덱스 추출
+                    if 'extract' in amount_spec and amount_spec['extract']['type'] == 'csv':
+                        index = amount_spec['extract']['index']
+                        if isinstance(value, str) and ',' in value:
+                            parts = value.split(',')
+                            if index < len(parts):
+                                value = parts[index]
+                    
                     symbol = input_field.get('symbol', '')
                     return f"{value} {symbol}".strip()
     elif 'json_key' in amount_spec:
@@ -415,6 +492,46 @@ def visualize_graph(G, output_file="transaction_graph.html", debug=False):
         print(f"Graph saving error: {e}")
         return None
     
+def export_graph_to_json(G, output_file="transaction_graph.json"):
+    """그래프를 JSON 파일로 내보내는 함수"""
+    graph_data = {
+        "nodes": [],
+        "edges": []
+    }
+    
+    # 노드 정보 추출
+    for node_id, attrs in G.nodes(data=True):
+        node_data = {
+            "id": node_id,
+            "size": attrs.get("size", 15),
+            "title": attrs.get("title", str(node_id)),
+            "type": attrs.get("type", "address")
+        }
+        graph_data["nodes"].append(node_data)
+    
+    # 엣지 정보 추출
+    for source, target, attrs in G.edges(data=True):
+        edge_data = {
+            "from": source,
+            "to": target,
+            "event": attrs.get("event", ""),
+            "token": attrs.get("token", ""),
+            "amount": attrs.get("amount", 0),
+            "event_index": attrs.get("event_index", -1),
+            "title": attrs.get("title", "")
+        }
+        graph_data["edges"].append(edge_data)
+    
+    # JSON 파일로 저장
+    try:
+        with open(output_file, 'w', encoding='utf-8') as f:
+            json.dump(graph_data, f, indent=2, ensure_ascii=False)
+        print(f"Graph data exported to {output_file}")
+        return output_file
+    except Exception as e:
+        print(f"JSON export error: {e}")
+        return None
+
 def main(file_path, debug=True):
     if not os.path.exists(file_path):
         print(f"error: file '{file_path}' not found.")
@@ -426,15 +543,13 @@ def main(file_path, debug=True):
     
     data = load_transaction_data(file_path, debug)
     if data:
-        # 그래프 생성
-        G = build_transaction_graph(data, semantic_events_list, debug)
+        # 그래프 생성 및 WETH 확인
+        G, contains_weth_address = build_transaction_graph(data, semantic_events_list, debug)
+        output_html = os.path.splitext(output_file)[0] + "_graph.html"
+        output_json = os.path.splitext(output_file)[0] + "_graph.json"
         
-        # 그래프 시각화
-        if G and G.number_of_nodes() > 0:
-            output_html = os.path.splitext(output_file)[0] + "_graph.html"
-            visualize_graph(G, output_html, debug)
-        else:
-            print("warning: no nodes in graph.")
+        visualize_graph(G, output_html, debug)
+        export_graph_to_json(G, output_json)
         
         return G
     else:

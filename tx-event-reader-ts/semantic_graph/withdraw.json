@@ -1,0 +1,49 @@
+{
+    "events":[
+        {
+            "name": "LogWithdraw",
+            "protocols": [
+                {
+                    "address_label": ["dYdX"],
+                    "transfers": [
+                        {
+                            "src": {
+                                "event_field": "address"
+                            },
+                            "dst": {
+                                "event_field": "inputs",
+                                "param_name": ["accountOwner"]
+                            },
+                            "amount": {
+                                "event_field": "inputs",
+                                "param_name": "update",
+                                "extract": {
+                                    "type": "csv",
+                                    "index": 1
+                                }
+                            }
+                        },
+                        {
+                            "src": {
+                                "event_field": "inputs",
+                                "param_name": ["accountOwner"]
+                            },
+                            "dst": {
+                                "event_field": "inputs",
+                                "param_name": ["to"]
+                            },
+                            "amount": {
+                                "event_field": "inputs",
+                                "param_name": "update",
+                                "extract": {
+                                    "type": "csv",
+                                    "index": 1
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -43,8 +43,7 @@
                                 "param_name": ["minter"]
                             },
                             "dst": {
-                                "event_field": "inputs",
-                                "param_name": ["depositAddress"]
+                                "event_field": "address"
                             },
                             "amount": {
                                 "event_field": "inputs",
